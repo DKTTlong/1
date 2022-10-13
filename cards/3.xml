@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Cards>
+  <Card ID="5087" SetNo="3" Name="心魔·腐朽" Color="0" Type="4" Level="0" NowDeckWeight="85" LadderDeckWeight="86" Rarity="1" RulesText="无法打出。&#xA;被献祭时：透支3。" UseLvl="1" XiulianLvl="3" EffectType="1" RandChance="100">
+    <TriggerSkill>
+      <TriggerCondition Type="8" />
+      <Condition Type="302">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3003" />
+        </Card>
+      </Condition>
+      <Effect Type="14">
+        <Fighter Value="1" />
+        <Number Value="3" />
+      </Effect>
+    </TriggerSkill>
+    <TriggerSkill>
+      <TriggerCondition Type="8" />
+      <Condition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3004" />
+        </Card>
+      </Condition>
+      <Effect Type="14">
+        <Fighter Value="2" />
+        <Number Value="3" />
+      </Effect>
+    </TriggerSkill>
+    <MagicSkill>
+      <UseCondition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3001" />
+        </Card>
+      </UseCondition>
+      <UseCondition Type="13">
+        <Number Value="0" Type="101">
+          <Fighter Value="1" />
+        </Number>
+        <Number Value="0" />
+      </UseCondition>
+      <Effect Type="12">
+        <Fighter Value="1" />
+        <Number Value="1" />
+      </Effect>
+    </MagicSkill>
+  </Card>
+  <Card ID="5088" SetNo="3" Name="心魔·牺牲" Color="0" Type="4" Level="0" NowDeckWeight="85" LadderDeckWeight="86" Rarity="1" RulesText="无法打出。&#xA;被献祭时：消灭随机友方生物。" UseLvl="1" XiulianLvl="3" EffectType="1" RandChance="100">
+    <TriggerSkill>
+      <TriggerCondition Type="8" />
+      <Condition Type="302">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3003" />
+        </Card>
+      </Condition>
+      <Effect Type="1002">
+        <Card Type="2001" Fighter="1" CardZone="8" CardType="1" />
+      </Effect>
+    </TriggerSkill>
+    <TriggerSkill>
+      <TriggerCondition Type="8" />
+      <Condition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3004" />
+        </Card>
+      </Condition>
+      <Effect Type="1002">
+        <Card Type="2001" Fighter="2" CardZone="8" CardType="1" />
+      </Effect>
+    </TriggerSkill>
+    <MagicSkill>
+      <UseCondition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3001" />
+        </Card>
+      </UseCondition>
+      <UseCondition Type="13">
+        <Number Value="0" Type="101">
+          <Fighter Value="1" />
+        </Number>
+        <Number Value="0" />
+      </UseCondition>
+      <Effect Type="12">
+        <Fighter Value="1" />
+        <Number Value="1" />
+      </Effect>
+    </MagicSkill>
+  </Card>
+  <Card ID="5089" SetNo="3" Name="心魔·疯狂" Color="0" Type="4" Level="0" NowDeckWeight="85" LadderDeckWeight="86" Rarity="1" RulesText="无法打出。&#xA;被献祭时：所有友方生物生命-4。" UseLvl="1" XiulianLvl="3" EffectType="1" RandChance="100">
+    <TriggerSkill>
+      <TriggerCondition Type="8" />
+      <Condition Type="302">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3003" />
+        </Card>
+      </Condition>
+      <Effect Type="1052">
+        <Card Type="3" Fighter="1" CardZone="8" CardType="1" />
+        <Number Value="4" />
+        <DamageType Value="6" />
+      </Effect>
+    </TriggerSkill>
+    <TriggerSkill>
+      <TriggerCondition Type="8" />
+      <Condition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3004" />
+        </Card>
+      </Condition>
+      <Effect Type="1052">
+        <Card Type="3" Fighter="2" CardZone="8" CardType="1" />
+        <Number Value="4" />
+        <DamageType Value="6" />
+      </Effect>
+    </TriggerSkill>
+    <MagicSkill>
+      <UseCondition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3001" />
+        </Card>
+      </UseCondition>
+      <UseCondition Type="13">
+        <Number Value="0" Type="101">
+          <Fighter Value="1" />
+        </Number>
+        <Number Value="0" />
+      </UseCondition>
+      <Effect Type="12">
+        <Fighter Value="1" />
+        <Number Value="1" />
+      </Effect>
+    </MagicSkill>
+  </Card>
+  <Card ID="5090" SetNo="3" Name="心魔·封锁" Color="0" Type="4" Level="0" NowDeckWeight="85" LadderDeckWeight="86" Rarity="1" RulesText="无法打出。&#xA;被献祭时：本回合内，当前场上的友方生物无法攻击。" UseLvl="1" XiulianLvl="3" EffectType="1" RandChance="100">
+    <TriggerSkill>
+      <TriggerCondition Type="8" />
+      <Condition Type="302">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3003" />
+        </Card>
+      </Condition>
+      <Effect Type="1061">
+        <Card Type="3" Fighter="1" CardZone="8" CardType="1" />
+        <SpecialAbility Type="51" />
+        <Time Value="1" />
+      </Effect>
+    </TriggerSkill>
+    <TriggerSkill>
+      <TriggerCondition Type="8" />
+      <Condition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3004" />
+        </Card>
+      </Condition>
+      <Effect Type="1061">
+        <Card Type="3" Fighter="2" CardZone="8" CardType="1" />
+        <SpecialAbility Type="51" />
+        <Time Value="2000" />
+      </Effect>
+    </TriggerSkill>
+    <MagicSkill>
+      <UseCondition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3001" />
+        </Card>
+      </UseCondition>
+      <UseCondition Type="13">
+        <Number Value="0" Type="101">
+          <Fighter Value="1" />
+        </Number>
+        <Number Value="0" />
+      </UseCondition>
+      <Effect Type="12">
+        <Fighter Value="1" />
+        <Number Value="1" />
+      </Effect>
+    </MagicSkill>
+  </Card>
+  <Card ID="5091" SetNo="3" Name="心魔·忏悔" Color="0" Type="4" Level="0" NowDeckWeight="85" LadderDeckWeight="86" Rarity="1" RulesText="无法打出。&#xA;被献祭时：为对手恢复6点生命。" UseLvl="1" XiulianLvl="3" EffectType="1" RandChance="100">
+    <TriggerSkill>
+      <TriggerCondition Type="8">
+        <Fighter Value="1" />
+      </TriggerCondition>
+      <Condition Type="302">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3003" />
+        </Card>
+      </Condition>
+      <Effect Type="1051">
+        <Card Type="5" />
+        <Number Value="6" />
+      </Effect>
+    </TriggerSkill>
+    <TriggerSkill>
+      <TriggerCondition Type="8">
+        <Fighter Value="1" />
+      </TriggerCondition>
+      <Condition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3004" />
+        </Card>
+      </Condition>
+      <Effect Type="1051">
+        <Card Type="4" />
+        <Number Value="6" />
+      </Effect>
+    </TriggerSkill>
+    <MagicSkill>
+      <UseCondition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3001" />
+        </Card>
+      </UseCondition>
+      <UseCondition Type="13">
+        <Number Value="0" Type="101">
+          <Fighter Value="1" />
+        </Number>
+        <Number Value="0" />
+      </UseCondition>
+      <Effect Type="12">
+        <Fighter Value="1" />
+        <Number Value="1" />
+      </Effect>
+    </MagicSkill>
+  </Card>
+  <Card ID="5092" SetNo="3" Name="心魔·堕落" Color="0" Type="4" Level="0" NowDeckWeight="85" LadderDeckWeight="86" Rarity="1" RulesText="无法打出。&#xA;被献祭时：对手法力上限+1。" UseLvl="1" XiulianLvl="3" EffectType="1" RandChance="100">
+    <TriggerSkill>
+      <TriggerCondition Type="8" />
+      <Condition Type="302">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3003" />
+        </Card>
+      </Condition>
+      <Effect Type="21">
+        <Fighter Value="2" />
+        <Number Value="1" />
+      </Effect>
+    </TriggerSkill>
+    <TriggerSkill>
+      <TriggerCondition Type="8" />
+      <Condition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3004" />
+        </Card>
+      </Condition>
+      <Effect Type="21">
+        <Fighter Value="1" />
+        <Number Value="1" />
+      </Effect>
+    </TriggerSkill>
+    <MagicSkill>
+      <UseCondition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3001" />
+        </Card>
+      </UseCondition>
+      <UseCondition Type="13">
+        <Number Value="0" Type="101">
+          <Fighter Value="1" />
+        </Number>
+        <Number Value="0" />
+      </UseCondition>
+      <Effect Type="12">
+        <Fighter Value="1" />
+        <Number Value="1" />
+      </Effect>
+    </MagicSkill>
+  </Card>
+  <Card ID="5093" SetNo="3" Name="心魔·负担" Color="0" Type="4" Level="0" NowDeckWeight="85" LadderDeckWeight="86" Rarity="1" RulesText="无法打出。&#xA;被献祭时：返回友方牌库顶。" UseLvl="1" XiulianLvl="3" EffectType="1" RandChance="100">
+    <TriggerSkill>
+      <TriggerCondition Type="8" />
+      <Condition Type="302">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3003" />
+        </Card>
+      </Condition>
+      <Effect Type="1001">
+        <Card Type="1" />
+        <FighterCardZone Fighter="1" CardZone="1" />
+        <Slot Type="10001" Fighter="1" />
+        <SkillFlag Value="0" />
+      </Effect>
+    </TriggerSkill>
+    <TriggerSkill>
+      <TriggerCondition Type="8" />
+      <Condition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3004" />
+        </Card>
+      </Condition>
+      <Effect Type="1001">
+        <Card Type="1" />
+        <FighterCardZone Fighter="2" CardZone="1" />
+        <Slot Type="10001" Fighter="2" />
+        <SkillFlag Value="0" />
+      </Effect>
+    </TriggerSkill>
+    <MagicSkill>
+      <UseCondition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3001" />
+        </Card>
+      </UseCondition>
+      <UseCondition Type="13">
+        <Number Value="0" Type="101">
+          <Fighter Value="1" />
+        </Number>
+        <Number Value="0" />
+      </UseCondition>
+      <Effect Type="12">
+        <Fighter Value="1" />
+        <Number Value="1" />
+      </Effect>
+    </MagicSkill>
+  </Card>
+  <Card ID="5094" SetNo="3" Name="心魔·疼痛" Color="0" Type="4" Level="0" NowDeckWeight="85" LadderDeckWeight="86" Rarity="1" RulesText="无法打出。&#xA;被献祭时：使你的生命-X，X为献祭后你的手牌数量。" UseLvl="1" XiulianLvl="3" EffectType="1" RandChance="100">
+    <TriggerSkill>
+      <TriggerCondition Type="8" />
+      <Condition Type="302">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3003" />
+        </Card>
+      </Condition>
+      <Effect Type="1052">
+        <Card Type="4" />
+        <Number Value="0" Type="2">
+          <Card Type="3" Fighter="1" CardZone="2" />
+        </Number>
+        <DamageType Value="6" />
+      </Effect>
+    </TriggerSkill>
+    <TriggerSkill>
+      <TriggerCondition Type="8" />
+      <Condition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3004" />
+        </Card>
+      </Condition>
+      <Effect Type="1052">
+        <Card Type="5" />
+        <Number Value="0" Type="2">
+          <Card Type="3" Fighter="2" CardZone="2" />
+        </Number>
+        <DamageType Value="6" />
+      </Effect>
+    </TriggerSkill>
+    <MagicSkill>
+      <UseCondition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3001" />
+        </Card>
+      </UseCondition>
+      <UseCondition Type="13">
+        <Number Value="0" Type="101">
+          <Fighter Value="1" />
+        </Number>
+        <Number Value="0" />
+      </UseCondition>
+      <Effect Type="12">
+        <Fighter Value="1" />
+        <Number Value="1" />
+      </Effect>
+    </MagicSkill>
+  </Card>
+  <Card ID="5095" SetNo="3" Name="心魔·恐惧" Color="0" Type="4" Level="0" NowDeckWeight="85" LadderDeckWeight="86" Rarity="1" RulesText="无法打出。&#xA;被献祭时：衍生2张本卡洗入你的牌库。" UseLvl="1" XiulianLvl="3" EffectType="1" RandChance="100">
+    <TriggerSkill>
+      <TriggerCondition Type="8">
+        <Fighter Value="1" />
+      </TriggerCondition>
+      <Condition Type="302">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3003" />
+        </Card>
+      </Condition>
+      <Effect Type="1101">
+        <Card Type="1" />
+        <Number Value="5095" />
+        <FighterCardZone Fighter="1" CardZone="1" />
+        <Slot Type="10003" Fighter="1" />
+        <SkillFlag Value="0" />
+      </Effect>
+      <Effect Type="1101">
+        <Card Type="1" />
+        <Number Value="5095" />
+        <FighterCardZone Fighter="1" CardZone="1" />
+        <Slot Type="10003" Fighter="1" />
+        <SkillFlag Value="0" />
+      </Effect>
+    </TriggerSkill>
+    <TriggerSkill>
+      <TriggerCondition Type="8">
+        <Fighter Value="1" />
+      </TriggerCondition>
+      <Condition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3004" />
+        </Card>
+      </Condition>
+      <Effect Type="1101">
+        <Card Type="1" />
+        <Number Value="5095" />
+        <FighterCardZone Fighter="2" CardZone="1" />
+        <Slot Type="10003" Fighter="2" />
+        <SkillFlag Value="0" />
+      </Effect>
+      <Effect Type="1101">
+        <Card Type="1" />
+        <Number Value="5095" />
+        <FighterCardZone Fighter="2" CardZone="1" />
+        <Slot Type="10003" Fighter="2" />
+        <SkillFlag Value="0" />
+      </Effect>
+    </TriggerSkill>
+    <MagicSkill>
+      <UseCondition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3001" />
+        </Card>
+      </UseCondition>
+      <UseCondition Type="13">
+        <Number Value="0" Type="101">
+          <Fighter Value="1" />
+        </Number>
+        <Number Value="0" />
+      </UseCondition>
+      <Effect Type="12">
+        <Fighter Value="1" />
+        <Number Value="1" />
+      </Effect>
+    </MagicSkill>
+  </Card>
+  <Card ID="5096" SetNo="3" Name="心魔·剥夺" Color="0" Type="4" Level="0" NowDeckWeight="85" LadderDeckWeight="86" Rarity="1" RulesText="无法打出。&#xA;被献祭时：随机丢弃2张手牌。" UseLvl="1" XiulianLvl="3" EffectType="1" RandChance="100">
+    <TriggerSkill>
+      <TriggerCondition Type="8" />
+      <Condition Type="302">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3003" />
+        </Card>
+      </Condition>
+      <Effect Type="41">
+        <Fighter Value="1" />
+        <FighterCardZone Fighter="1" CardZone="2" />
+        <Number Value="2" />
+        <Card Type="53" Fighter="1" CardZone="2">
+          <CardCount Value="2" />
+        </Card>
+        <FighterCardZone Fighter="0" CardZone="16" />
+        <Slot Type="0" />
+        <SkillFlag Value="0" />
+      </Effect>
+    </TriggerSkill>
+    <TriggerSkill>
+      <TriggerCondition Type="8" />
+      <Condition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3004" />
+        </Card>
+      </Condition>
+      <Effect Type="41">
+        <Fighter Value="2" />
+        <FighterCardZone Fighter="2" CardZone="2" />
+        <Number Value="2" />
+        <Card Type="53" Fighter="2" CardZone="2">
+          <CardCount Value="2" />
+        </Card>
+        <FighterCardZone Fighter="0" CardZone="16" />
+        <Slot Type="0" />
+        <SkillFlag Value="0" />
+      </Effect>
+    </TriggerSkill>
+    <MagicSkill>
+      <UseCondition Type="301">
+        <Card Type="4" />
+        <Card Type="0">
+          <SpecialAbility Type="3001" />
+        </Card>
+      </UseCondition>
+      <UseCondition Type="13">
+        <Number Value="0" Type="101">
+          <Fighter Value="1" />
+        </Number>
+        <Number Value="0" />
+      </UseCondition>
+      <Effect Type="12">
+        <Fighter Value="1" />
+        <Number Value="1" />
+      </Effect>
+    </MagicSkill>
+  </Card>
+</Cards>

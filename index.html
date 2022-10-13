@@ -1,0 +1,22 @@
+
+<head>    
+<script src="src/main.js"></script>    
+<script src="http://lib.sinaapp.com/js/jquery/2.2.4/jquery-2.2.4.min.js"></script>
+<title>TODO supply a title</title> 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<p id="test">hello world!</p>
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		LoadConfig();
+	};
+	var mystr = document.getElementById("test");
+	document.write("p标签修改之前："+mystr.innerHTML+ "</br>");
+	mystr.innerHTML="hello DSCN!";
+	document.write("p标签修改之前："+mystr.innerHTML + "</br>");
+</script>
+<input type="text" onchange="javascript:ShowCards();">
+</html>
