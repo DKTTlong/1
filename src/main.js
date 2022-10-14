@@ -1,13 +1,19 @@
 function LoadConfig(){
-	for(var i=1;i<=3;++i) {
-		LoadCardXml(i)
+
+	var url = window.location.href;
+	var result=/^https/.test(url);
+	if (result==false){
+		url="https://dkttlong.github.io/1/";
 	}
+	
+	for(var i=1;i<=3;++i) {	
+		var xmlFile = url+"cards/"+i+".xml";
+		LoadCardXml(xmlFile);
+	}
+	
 }
 
-function LoadCardXml(index){
-	// var xmlFile = "https://dkttlong.github.io/1/cards/"+index+".xml"
-	var url = window.location.href;
-	var xmlFile = url+"cards/"+index+".xml"
+function LoadCardXml(xmlFile){
 	var xmldoc=loadXML(xmlFile);
 
 	//获得根节点
@@ -26,7 +32,7 @@ function LoadCardXml(index){
 		var UpLvlCardId=cards[i].getAttribute("UpLvlCardId");
 		var NpcAIFlag=cards[i].getAttribute("NpcAIFlag");
 	}
-	// alert("显示卡牌：" + cards.length);
+	alert("显示卡牌：" + cards.length);
 }
 
 function loadXML(xmlFile){
