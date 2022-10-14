@@ -1290,7 +1290,7 @@
       </Effect>
     </TriggerSkill>
   </Card>
-  <Card ID="1222" SetNo="1" Name="三尾蝎" Color="2" Type="1" Level="3" Power="1" Life="14" NowDeckWeight="70" LadderDeckWeight="85" SndType="61" Rarity="2" RulesText="连击2\n不能被友方选为目标。" UseLvl="1" XiulianLvl="3" CardLvl="1" UpLvlCardId="6222" SecondCardId="3222" RandChance="60" Price="47" BreakNum="1">
+  <Card ID="1222" SetNo="1" Name="三尾蝎" Color="2" Type="1" Level="3" Power="1" Life="14" NowDeckWeight="70" LadderDeckWeight="85" SndType="61" Rarity="2" RulesText="连击2&#xD;&#xA;不能被友方选为目标。" UseLvl="1" XiulianLvl="3" CardLvl="1" Price="47" BreakNum="1" UpLvlCardId="6222" SecondCardId="3222" RandChance="60">
     <SpecialAbility Type="5" Text="SpecialAbility_5_2">
       <Number Value="2" />
     </SpecialAbility>
@@ -13822,7 +13822,7 @@
   <Card ID="7229" SetNo="1" Name="雌飞龙+" Color="2" Type="1" Level="2" Power="3" Life="7" NowDeckWeight="68" LadderDeckWeight="50" Desc="人狐结合所生的女儿，被托付给鬼母抚养。她长承山村雨露，娇憨天真，一笑生神。" SndType="61" Rarity="2" RulesText="穿透" UseLvl="1" XiulianLvl="3" NpcAIFlag="8" IconCardId="2229" CardLvl="2" Price="3" SecondCardId="9229">
     <SpecialAbility Type="111" />
   </Card>
-  <Card ID="6222" SetNo="1" Name="三尾蝎+" Color="2" Type="1" Level="3" Power="1" Life="17" NowDeckWeight="70" LadderDeckWeight="85" Desc="白面狐狸成精，与白鹿狼狈为奸，蒙蔽比丘国王，残害比丘国人民。" SndType="61" Rarity="2" RulesText="连击2\n不能被友方选为目标。" UseLvl="1" XiulianLvl="3" IconCardId="1222" CardLvl="2" SecondCardId="8222" Price="47">
+  <Card ID="6222" SetNo="1" Name="三尾蝎+" Color="2" Type="1" Level="3" Power="1" Life="17" NowDeckWeight="70" LadderDeckWeight="85" Desc="白面狐狸成精，与白鹿狼狈为奸，蒙蔽比丘国王，残害比丘国人民。" SndType="61" Rarity="2" RulesText="连击2&#xD;&#xA;不能被友方选为目标。" UseLvl="1" XiulianLvl="3" IconCardId="1222" CardLvl="2" Price="47" SecondCardId="8222">
     <SpecialAbility Type="5" Text="SpecialAbility_5_2">
       <Number Value="2" />
     </SpecialAbility>
@@ -20209,7 +20209,7 @@
       </Effect>
     </TriggerSkill>
   </Card>
-  <Card ID="3222" SetNo="1" Name="三尾蝎★" Color="2" Type="1" Level="3" Power="2" Life="20" NowDeckWeight="70" LadderDeckWeight="85" Desc="白面狐狸成精，与白鹿狼狈为奸，蒙蔽比丘国王，残害比丘国人民。" SndType="61" Rarity="2" RulesText="连击2\n不能被友方选为目标。" UseLvl="1" XiulianLvl="3" IconCardId="1222" CardLvl="3" Price="94" UpLvlCardId="8222" RandChance="60">
+  <Card ID="3222" SetNo="1" Name="三尾蝎★" Color="2" Type="1" Level="3" Power="2" Life="20" NowDeckWeight="70" LadderDeckWeight="85" Desc="白面狐狸成精，与白鹿狼狈为奸，蒙蔽比丘国王，残害比丘国人民。" SndType="61" Rarity="2" RulesText="连击2&#xD;&#xA;不能被友方选为目标。" UseLvl="1" XiulianLvl="3" IconCardId="1222" CardLvl="3" Price="94" UpLvlCardId="8222" RandChance="60">
     <SpecialAbility Type="5" Text="SpecialAbility_5_2">
       <Number Value="2" />
     </SpecialAbility>
@@ -20217,7 +20217,7 @@
       <Card Type="3" Fighter="1" />
     </SpecialAbility>
   </Card>
-  <Card ID="8222" SetNo="1" Name="三尾蝎★+" Color="2" Type="1" Level="3" Power="2" Life="23" NowDeckWeight="70" LadderDeckWeight="85" Desc="白面狐狸成精，与白鹿狼狈为奸，蒙蔽比丘国王，残害比丘国人民。" SndType="61" Rarity="2" RulesText="连击2\n不能被友方选为目标。" UseLvl="1" XiulianLvl="3" IconCardId="1222" CardLvl="4" Price="94">
+  <Card ID="8222" SetNo="1" Name="三尾蝎★+" Color="2" Type="1" Level="3" Power="2" Life="23" NowDeckWeight="70" LadderDeckWeight="85" Desc="白面狐狸成精，与白鹿狼狈为奸，蒙蔽比丘国王，残害比丘国人民。" SndType="61" Rarity="2" RulesText="连击2&#xD;&#xA;不能被友方选为目标。" UseLvl="1" XiulianLvl="3" IconCardId="1222" CardLvl="4" Price="94">
     <SpecialAbility Type="5" Text="SpecialAbility_5_2">
       <Number Value="2" />
     </SpecialAbility>
@@ -48953,7 +48953,7 @@
       </Effect>
     </TriggerSkill>
   </Card>
-  <Card ID="923" SetNo="1" Name="万圣节糖果" Color="16" Type="2" Level="0" NowDeckWeight="75" LadderDeckWeight="70" Rarity="3" RulesText="法力+1，为你恢复1点生命。" UseLvl="1" XiulianLvl="3" NpcAIFlag="8" CardLvl="1" Price="1" BreakNum="1">
+  <Card ID="923" SetNo="1" Name="南瓜节糖果" Color="16" Type="2" Level="0" NowDeckWeight="75" LadderDeckWeight="70" Rarity="3" RulesText="法力+1，为你恢复1点生命。" UseLvl="1" XiulianLvl="3" NpcAIFlag="8" CardLvl="1" Price="1" BreakNum="1">
     <MagicSkill>
       <Effect Type="11">
         <Fighter Value="1" />
@@ -71295,7 +71295,7 @@
       </Effect>
     </TriggerSkill>
   </Card>
-  <Card ID="6870" SetNo="1" Name="噩兆天使+" Color="16" Type="1" Level="4" Power="5" Life="14" SndType="320" Rarity="3" RulesText="死亡时：随机消灭对方一个生命最高的生物。" UseLvl="1" IconCardId="1870" CardLvl="2" Price="58" SecondCardId="8870">
+  <Card ID="6870" SetNo="1" Name="噩兆天使+" Color="16" Type="1" Level="3" Power="4" Life="14" SndType="320" Rarity="3" RulesText="死亡时：随机消灭对方一个生命最高的生物。" UseLvl="1" IconCardId="1870" CardLvl="2" Price="58" SecondCardId="8870">
     <TriggerSkill>
       <TriggerCondition Type="107">
         <Card Type="0" />
@@ -76919,7 +76919,7 @@
       </Effect>
     </ActiveSkill>
   </Card>
-  <Card ID="3870" SetNo="1" Name="噩兆天使★" Color="16" Type="1" Level="4" Power="6" Life="17" SndType="320" Rarity="3" RulesText="死亡时：随机消灭对方一个生命最高的生物。" UseLvl="1" IconCardId="1870" CardLvl="3" Price="116" UpLvlCardId="8870" RandChance="50">
+  <Card ID="3870" SetNo="1" Name="噩兆天使★" Color="16" Type="1" Level="3" Power="5" Life="17" SndType="320" Rarity="3" RulesText="死亡时：随机消灭对方一个生命最高的生物。" UseLvl="1" IconCardId="1870" CardLvl="3" Price="116" UpLvlCardId="8870" RandChance="50">
     <TriggerSkill>
       <TriggerCondition Type="107">
         <Card Type="0" />
@@ -76934,7 +76934,7 @@
       </Effect>
     </TriggerSkill>
   </Card>
-  <Card ID="8870" SetNo="1" Name="噩兆天使★+" Color="16" Type="1" Level="4" Power="7" Life="20" SndType="320" Rarity="3" RulesText="死亡时：随机消灭对方一个生命最高的生物。" UseLvl="1" IconCardId="1870" CardLvl="4" Price="116">
+  <Card ID="8870" SetNo="1" Name="噩兆天使★+" Color="16" Type="1" Level="3" Power="6" Life="20" SndType="320" Rarity="3" RulesText="死亡时：随机消灭对方一个生命最高的生物。" UseLvl="1" IconCardId="1870" CardLvl="4" Price="116">
     <TriggerSkill>
       <TriggerCondition Type="107">
         <Card Type="0" />
