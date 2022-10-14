@@ -2,14 +2,12 @@ function LoadConfig(){
 	for(var i=1;i<=3;++i) {
 		LoadCardXml(i)
 	}
-	var url = window.location.href;
-	alert("显示1：" + url);
-	var url = window.location.pathname;
-	alert("显示2：" + url);
 }
 
 function LoadCardXml(index){
-	var xmlFile = "https://dkttlong.github.io/1/cards/"+index+".xml"
+	// var xmlFile = "https://dkttlong.github.io/1/cards/"+index+".xml"
+	var url = window.location.href;
+	var xmlFile = url+"cards/"+index+".xml"
 	var xmldoc=loadXML(xmlFile);
 
 	//获得根节点
