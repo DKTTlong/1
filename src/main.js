@@ -125,7 +125,7 @@ function showCards(){
 	siftCards();
 	var pageNum = Math.ceil(ShowCardDataList.length/onePageCardCount);
 	pageShow(1,pageNum,onePageCardCount);
-	alert(pageNum);
+	// alert(pageNum);
 }
 
 //显示一页卡牌
