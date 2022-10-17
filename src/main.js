@@ -1,4 +1,83 @@
+var CardDataList=[];
+var UpgradeCardDataList=[];
+var ShowCardDataList=[];
+var onePageCardCount = 21;//每页显示卡牌数量
+
+// 卡牌数据结构
+function CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,CardLvl,UpLvlCardId,NpcAIFlag,IconCardId){
+	this.ID=ID;
+	this.SetNo=SetNo;
+	this.Name=Name;
+	this.Color=Color;
+	this.Type=Type;
+	this.Level=Level;
+	this.Power=Power;
+	this.Life=Life;
+	this.Rarity=Rarity;
+	this.RulesText=RulesText;
+	this.CardLvl=CardLvl;
+	this.UpLvlCardId=UpLvlCardId;
+	this.NpcAIFlag=NpcAIFlag;
+	this.IconCardId=IconCardId;
+}
+
+// 初始化
+function Init(){
+	AddOptionBtn();
+	LoadConfig();
+}
+
+// 创建下拉框
+function AddOptionBtn(){
+	// 系别
+	var txtList=['系别','木','水','火','暗'];
+	var valueList=[-1,2,4,8,16];
+	AddOneOptionBtn(txtList,valueList,'option_color');
+	// 类型
+	var txtList=['类型','生物卡','魔法卡','装备卡','心魔卡'];
+	var valueList=[-1,2,8,16,4];
+	AddOneOptionBtn(txtList,valueList,'option_type');
+	// 费用
+	var txtList=['费用'];
+	var valueList=[-1];
+	for (var i=0;i<=9;++i){
+		txtList[i+1]=i+'费';
+		valueList[i+1]=i;
+	}
+	AddOneOptionBtn(txtList,valueList,'option_cost');
+	
+	//卡牌关键字
+	var inputText = document.getElementById('inputText'); 
+	inputText.onchange = function() {
+		showCards();
+	}
+	
+	//关闭蒙版
+	document.getElementById('aboveBg').onclick = function(){
+		closeAbovePage();
+	}
+}
+
+// 创建一个下拉框
+function AddOneOptionBtn(txtList,valueList,selectId){
+	var selectNode = document.getElementById(selectId); 
+	
+	for (var i=0;i<txtList.length;++i){
+		var optionNode = document.createElement("option"); //创建一个标签
+		selectNode.appendChild(optionNode);
+		optionNode.value = valueList[i];
+		optionNode.innerText = txtList[i];
+	}
+
+	selectNode.onchange = function() {
+		showCards();
+	}	
+}
+
+// 读取卡牌配置
 function LoadConfig(){
+	CardDataList=[];
+	UpgradeCardDataList=[];
 
 	var url = window.location.href;
 	var result=/^https/.test(url);
@@ -6,16 +85,66 @@ function LoadConfig(){
 		url="https://dkttlong.github.io/1/";
 	}
 	
-	for(var i=1;i<=3;++i) {	
+	for (var i=1;i<=3;++i) {	
 		var xmlFile = url+"cards/"+i+".xml";
 		LoadCardXml(xmlFile);
 	}
 	
+	showCards();
 }
 
+// 筛选卡牌
+function siftCards(){
+	ShowCardDataList=[];
+	
+	var keyWord = document.getElementById('inputText').value;
+	var option_color = document.getElementById('option_color').value;
+	var option_type = document.getElementById('option_type').value;
+	var option_cost = document.getElementById('option_cost').value;
+	// alert(option_color);
+	
+	for (var i=0;i<CardDataList.length;++i){
+		if (keyWord!="" && !(CardDataList[i].Name.includes(keyWord) || CardDataList[i].RulesText.includes(keyWord))){
+			continue;
+		}
+		if (option_color>=0 && CardDataList[i].Color!=option_color){
+			continue;
+		}
+		if (option_type>=0 && CardDataList[i].Type!=option_type){
+			continue;
+		}
+		if (option_cost>=0 && CardDataList[i].Level!=option_cost){
+			continue;
+		}
+		ShowCardDataList[ShowCardDataList.length]=CardDataList[i];
+	}
+}
+
+// 显示卡牌
+function showCards(){
+	siftCards();
+	var pageNum = Math.ceil(ShowCardDataList.length/onePageCardCount);
+	pageShow(1,pageNum,onePageCardCount); 
+}
+
+//显示一页卡牌
+function showOnePageCard(curPage,onePageCardCount){
+	var beginNum = (curPage-1)*onePageCardCount
+	var endNum = curPage*onePageCardCount;
+	if (endNum>ShowCardDataList.length)
+	{
+		endNum=ShowCardDataList.length;
+	}
+	for (var i=beginNum;i<endNum;++i){
+		var box = document.getElementById("box");
+		var canvas = CreateCardImg(box,ShowCardDataList[i],30,true);
+		canvas.className="cardObj"
+	}
+}
+
+//读取单个文件配置
 function LoadCardXml(xmlFile){
 	var xmldoc=loadXML(xmlFile);
-
 	//获得根节点
 	var cards=xmlDoc.getElementsByTagName("Card");
 	for(var i=0;i<cards.length;i++) {
@@ -29,26 +158,30 @@ function LoadCardXml(xmlFile){
 		var Life=cards[i].getAttribute("Life");
 		var Rarity=cards[i].getAttribute("Rarity");
 		var RulesText=cards[i].getAttribute("RulesText");
+		var CardLvl=cards[i].getAttribute("CardLvl");
 		var UpLvlCardId=cards[i].getAttribute("UpLvlCardId");
 		var NpcAIFlag=cards[i].getAttribute("NpcAIFlag");
-	}
-	alert("显示卡牌：" + cards.length);
-}
+		var IconCardId=cards[i].getAttribute("IconCardId");
+		
+		if (ID==null){
+			continue;
+		}
+		if (CardLvl==null){
+			CardLvl=0;
+		}
+		if (NpcAIFlag==null){
+			NpcAIFlag=0;
+		}
 
-function loadXML(xmlFile){
-	if (window.XMLHttpRequest){
-		// code for IE7+, Firefox, Chrome, Opera, Safari
-		xmlhttp=new XMLHttpRequest();
+		if (Type!=32 && (NpcAIFlag&8)!=8){
+			if (CardLvl<=1){
+				CardDataList[CardDataList.length] = new CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,CardLvl,UpLvlCardId,NpcAIFlag,IconCardId);
+			}
+			else if(CardLvl==2){
+				UpgradeCardDataList[UpgradeCardDataList.length] = new CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,CardLvl,UpLvlCardId,NpcAIFlag,IconCardId);
+			}
+		}
+		
 	}
-	else{// code for IE6, IE5
-	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	xmlhttp.open("GET",xmlFile,false);
-	xmlhttp.send();
-	xmlDoc=xmlhttp.responseXML;
+	// alert("显示卡牌：" + CardDataList.length);
 }
-
-function ShowCards(){
-	alert("显示卡牌");
-}
-
