@@ -1,7 +1,7 @@
 var CardDataList=[];
 var UpgradeCardDataList=[];
 var ShowCardDataList=[];
-var onePageCardCount = 21;//每页显示卡牌数量
+var onePageCardCount = 5;//每页显示卡牌数量
 
 // 卡牌数据结构
 function CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,CardLvl,UpLvlCardId,NpcAIFlag,IconCardId){
@@ -25,6 +25,7 @@ function CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,Car
 function Init(){
 	AddOptionBtn();
 	LoadConfig();
+	addLoadEvent(preloader);
 }
 
 // 创建下拉框
@@ -101,23 +102,23 @@ function siftCards(){
 	var option_color = document.getElementById('option_color').value;
 	var option_type = document.getElementById('option_type').value;
 	var option_cost = document.getElementById('option_cost').value;
-	// alert(option_color);
-	
-	for (var i=0;i<CardDataList.length;++i){
-		if (keyWord!="" && !(CardDataList[i].Name.includes(keyWord) || CardDataList[i].RulesText.includes(keyWord))){
-			continue;
+
+	CardDataList.forEach( function( item ) {
+		if (keyWord!="" && !(item.Name.includes(keyWord) || item.RulesText.includes(keyWord))){
+			return;
 		}
-		if (option_color>=0 && CardDataList[i].Color!=option_color){
-			continue;
+		if (option_color>=0 && item.Color!=option_color){
+			return;
 		}
-		if (option_type>=0 && CardDataList[i].Type!=option_type){
-			continue;
+		if (option_type>=0 && item.Type!=option_type){
+			return;
 		}
-		if (option_cost>=0 && CardDataList[i].Level!=option_cost){
-			continue;
+		if (option_cost>=0 && item.Level!=option_cost){
+			return;
 		}
-		ShowCardDataList[ShowCardDataList.length]=CardDataList[i];
-	}
+		ShowCardDataList[ShowCardDataList.length]=item;
+	  }
+	)
 }
 
 // 显示卡牌

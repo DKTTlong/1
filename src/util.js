@@ -456,3 +456,28 @@ function getCardDataById(cardID){
 	}
 	return null;
 }
+
+function preloader() {  
+    if (document.images) {
+		CardDataList.forEach( function( item ) {
+			 var img = new Image();
+			 img.src = './img/cards/'+item.ID+'.png';
+			}
+		)
+		var img = new Image();
+		img.src = './img/ui/desBg.png';
+    }
+}  
+function addLoadEvent(func) {  
+    var oldonload = window.onload;  
+    if (typeof window.onload != 'function') {  
+        window.onload = func;  
+    } else {  
+        window.onload = function() {  
+            if (oldonload) {  
+                oldonload();  
+            }  
+            func();  
+        }  
+    }  
+}  
