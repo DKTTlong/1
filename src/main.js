@@ -1,7 +1,7 @@
 var CardDataList=[];
 var UpgradeCardDataList=[];
 var ShowCardDataList=[];
-var onePageCardCount = 5;//每页显示卡牌数量
+var onePageCardCount = 21;//每页显示卡牌数量
 
 // 卡牌数据结构
 function CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,CardLvl,UpLvlCardId,NpcAIFlag,IconCardId){
@@ -25,7 +25,6 @@ function CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,Car
 function Init(){
 	AddOptionBtn();
 	LoadConfig();
-	addLoadEvent(preloader);
 }
 
 // 创建下拉框

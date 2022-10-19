@@ -457,20 +457,26 @@ function getCardDataById(cardID){
 	return null;
 }
 
-function preloader() {  
-    if (document.images) {
+function preloader() {
+	var imgList=[];
+	
+    if (document.images) {		
 		CardDataList.forEach( function( item ) {
-			 var img = new Image();
-			 img.src = './img/cards/'+item.ID+'.png';
+			 imgList[imgList.length] = new Image();
+			 imgList[imgList.length-1].src = './img/cards/'+item.ID+'.png';
 			}
 		)
-		var img = new Image();
-		img.src = './img/ui/desBg.png';
+		
+		imgList[imgList.length] = new Image();
+		imgList[imgList.length-1].src = './img/ui/desBg.png';
+		imgList[imgList.length] = new Image();
+		imgList[imgList.length-1].src = './img/ui/cardBgCreature2.png';
     }
+	// alert(imgList.length);
 }  
 function addLoadEvent(func) {  
     var oldonload = window.onload;  
-    if (typeof window.onload != 'function') {  
+    if (typeof window.onload != 'function') {
         window.onload = func;  
     } else {  
         window.onload = function() {  
@@ -479,5 +485,5 @@ function addLoadEvent(func) {
             }  
             func();  
         }  
-    }  
+    }
 }  
