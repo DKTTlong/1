@@ -48,7 +48,7 @@ function AddOptionBtn(){
 	AddOneOptionBtn(txtList,valueList,'option_color');
 	// 类型
 	var txtList=['类型','生物卡','魔法卡','装备卡','心魔卡'];
-	var valueList=[-1,2,8,16,4];
+	var valueList=[-1,1,2,24,4];
 	AddOneOptionBtn(txtList,valueList,'option_type');
 	// 费用
 	var txtList=['费用'];
@@ -119,13 +119,13 @@ function siftCards(){
 		if (keyWord!="" && !(item.Name.includes(keyWord) || item.RulesText.includes(keyWord))){
 			return;
 		}
-		if (option_color>=0 && item.Color!=option_color){
+		if (option_color>=0 && option_color!=item.Color){
 			return;
 		}
-		if (option_type>=0 && item.Type!=option_type){
+		if (option_type>=0 && (option_type&item.Type)==0){
 			return;
 		}
-		if (option_cost>=0 && item.Level!=option_cost){
+		if (option_cost>=0 && option_cost!=item.Level){
 			return;
 		}
 		ShowCardDataList[ShowCardDataList.length]=item;
