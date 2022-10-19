@@ -76,7 +76,7 @@ function CreatCardImgaeByData(cardData,canvas,imgScale){
 	var IconCardId=getCardIconIdByData(cardData);
 	var ctx = canvas.getContext('2d');
 	var cardPic = new Image();
-	cardPic.src = './img/cards/'+IconCardId+'.png';	
+	cardPic.src = './img/cards/'+IconCardId+'.jpg';	
 	cardImgList[cardImgList.length]=cardPic;
 	var cardScale=0.92;
 	drawCanvasImage(cardPic,ctx,cardScale*imgScale,(CardBgSize[0]-cardPic.width*cardScale)*imgScale/2,28*imgScale);
@@ -146,8 +146,6 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 	cardBg.src = './img/ui/cardBg'+cardBgFile+'.png';
 	var cardRarity = new Image();
 	cardRarity.src = './img/ui/cardRarity'+cardRarityFile+'.png';
-	var cardPic = new Image();
-	cardPic.src = './img/cards/'+IconCardId+'.png';	
 	var costBg = new Image();
 	costBg.src = './img/ui/Lv1.png';
 	if  (cardData.CardLvl>=2){
@@ -168,6 +166,8 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 	ctx.fillText(txt,CardBgSize[0]*imgScale/2, 14*imgScale);
 	
 	//插画
+	// var cardPic = new Image();
+	// cardPic.src = './img/cards/'+IconCardId+'.jpg';	
 	// var cardScale=0.92;
 	// drawCanvasImage(cardPic,ctx,cardScale*imgScale,(cardBg.width-cardPic.width*cardScale)*imgScale/2,28*imgScale);
 	
