@@ -1,7 +1,11 @@
 var CardDataList=[];
 var UpgradeCardDataList=[];
 var ShowCardDataList=[];
+var imgList=[];
+var cardImgList=[];
 var onePageCardCount = 21;//每页显示卡牌数量
+var CardBgSize=[]; //卡牌尺寸
+
 
 // 卡牌数据结构
 function CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,CardLvl,UpLvlCardId,NpcAIFlag,IconCardId){
@@ -23,8 +27,17 @@ function CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,Car
 
 // 初始化
 function Init(){
+	InitCardBgSize();
 	AddOptionBtn();
 	LoadConfig();
+}
+
+// 设置卡牌尺寸
+function InitCardBgSize(){
+	var img = new Image();
+	img.src = 'img/ui/cardBgCurse.png';
+	CardBgSize[0]=img.width;
+	CardBgSize[1]=img.height;
 }
 
 // 创建下拉框
@@ -138,9 +151,26 @@ function showOnePageCard(curPage,onePageCardCount){
 	}
 	for (var i=beginNum;i<endNum;++i){
 		var box = document.getElementById("box");
-		var canvas = CreateCardImg(box,ShowCardDataList[i],30,true);
-		canvas.className="cardObj"
+		var cardData=ShowCardDataList[i];		
+		var IconCardId=getCardIconIdByData(cardData);
+		var cardPic = new Image();
+		cardPic.src = './img/cards/'+IconCardId+'.png';
+		cardPic.id = IconCardId;
+		var canvas = CreateCardImg(box,cardData,30,true);
+		canvas.className="cardObj";
+		// alert(IconCardId);
+		cardPic.onload=function(){
+			// alert("cardPic加载完成.."+this.id);			
+			LodCardImgaeByID(this.id);
+		}
 	}
+}
+
+//页面创建单张卡牌
+function LodCardImgaeByID(cardID){
+	var canvas = document.getElementById('card_'+cardID);
+	var cardData=getCardDataById(cardID);
+	CreatCardImgaeByData(cardData,canvas);
 }
 
 //读取单个文件配置

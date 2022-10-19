@@ -24,6 +24,7 @@ function RemoveAllCardImg(){
       box.removeChild(pObjs[i]);
     }
 	window.scrollTo(0, 0); 
+	cardImgList=[];
 }
 
 // 显示卡牌大图
@@ -48,6 +49,7 @@ function CreateMoreImfor(cardData){
 		card.className='tempCard';
 		var imgScale=1.3;
 		var canvas = CreateCardImg(card,cardDataVec[i],disX,false,imgScale);
+		CreatCardImgaeByData(cardDataVec[i],canvas,imgScale);
 		var offX=(canvas.width*imgScale*cardDataVec.length+disX*(cardDataVec.length-1))/2;//间距
 		card.style.top = (getPageOffY()+document.body.clientHeight/2-canvas.height*imgScale/2) + 'px';
 		card.style.left = (document.body.clientWidth/2+i*canvas.width*imgScale-offX) + 'px';
@@ -67,6 +69,40 @@ function closeAbovePage(){
 	}
 }
 
+//创建单张卡牌
+function CreatCardImgaeByData(cardData,canvas,imgScale){
+	if (imgScale==null) imgScale=1;
+	var IconCardId=getCardIconIdByData(cardData);
+	const ctx = canvas.getContext('2d');
+	var cardPic = new Image();
+	cardPic.src = './img/cards/'+IconCardId+'.png';	
+	cardImgList[cardImgList.length]=cardPic;
+	var cardScale=0.92;
+	drawCanvasImage(cardPic,ctx,cardScale*imgScale,(CardBgSize[0]-cardPic.width*cardScale)*imgScale/2,28*imgScale);
+	
+	var cardNameColor="black";
+	if (cardData.Type==4){
+		cardNameColor="#FF00FF";
+	}
+	//卡牌名
+	var txt=cardData.Name;
+	ctx.fillStyle = cardNameColor;
+	ctx.textBaseline = "middle";
+	ctx.textAlign = 'center';
+	ctx.font = 18*imgScale+'px '+fontName;
+	ctx.fillText(txt,CardBgSize[0]*imgScale/2, 14*imgScale);
+	//描述和背板
+	var txt=cardData.RulesText;
+	if (txt!=null && txt!=""){
+		txt = cardDesFunc(txt);
+		ctx.fillStyle = "white";
+		ctx.textBaseline = "middle";
+		ctx.textAlign = 'center';
+		ctx.font = 14*imgScale+'px '+fontName;
+		drawText(ctx, txt, 250*imgScale, 139*imgScale, imgScale);
+	}
+}
+
 // 创建一张卡
 function CreateCardImg(box,cardData,space,canClick,imgScale){
 	const canvas = document.createElement("canvas"); //创建一个标签
@@ -80,19 +116,16 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 		}
 	}
 	
-	canvas.id = cardData.ID;
-	canvas.width = 191*imgScale;
-	canvas.height = 310*imgScale;
+	canvas.id = 'card_' + cardData.ID;
+	canvas.width = CardBgSize[0]*imgScale;
+	canvas.height = CardBgSize[1]*imgScale;
 	canvas.style.margin=space+'px';
 	box.appendChild(canvas);
-	const ctx = canvas.getContext('2d')
+	const ctx = canvas.getContext('2d');
 	// 画图
 	//获取插画
-	var IconCardId=cardData.ID;
-	if (cardData.IconCardId>0){
-		IconCardId=cardData.IconCardId;
-	}
-	var cardNameColor="black";
+	var IconCardId=getCardIconIdByData(cardData);
+	// var cardNameColor="black";
 	var cardTypeStr="";
 	var cardBgFile="";
 	var cardRarityFile="";
@@ -110,7 +143,7 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 		cardTypeStr="Curse";
 		cardBgFile=cardTypeStr;
 		cardRarityFile=cardTypeStr;
-		cardNameColor="#FF00FF";
+		// cardNameColor="#FF00FF";
 	}
 	else if (cardData.Type==8 || cardData.Type==16){
 		cardTypeStr="Weapon";
@@ -132,72 +165,71 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 	var manaBg = new Image();
 	manaBg.src = './img/ui/mana.png';
 	//绘制有先后
-	var waitTime=10;
-	if (canClick==true){
-		waitTime=ShowCardDataList.length*20;
-		if (waitTime>500){
-			waitTime=500;
-		}
-	}
-	setTimeout(function(){
-		//背景
-		drawCanvasImage(cardBg,ctx,imgScale);
-		//插画
-		var cardScale=0.92;
-		drawCanvasImage(cardPic,ctx,cardScale*imgScale,(cardBg.width-cardPic.width*cardScale)*imgScale/2,28*imgScale);
-		//卡牌名
-		var txt=cardData.Name;
-		ctx.fillStyle = cardNameColor;
+	//背景
+	drawCanvasImage(cardBg,ctx,imgScale);
+	//插画
+	var cardScale=0.92;
+	drawCanvasImage(cardPic,ctx,cardScale*imgScale,(cardBg.width-cardPic.width*cardScale)*imgScale/2,28*imgScale);
+	// 卡牌名
+	// var txt=cardData.Name;
+	// ctx.fillStyle = cardNameColor;
+	// ctx.textBaseline = "middle";
+	// ctx.textAlign = 'center';
+	// ctx.font = 18*imgScale+'px '+fontName;
+	// ctx.fillText(txt,cardBg.width*imgScale/2, 14*imgScale);
+	// 描述和背板
+	// var txt=cardData.RulesText;
+	// if (txt!=null && txt!=""){
+		// txt = cardDesFunc(txt);
+		// ctx.fillStyle = "white";
+		// ctx.textBaseline = "middle";
+		// ctx.textAlign = 'center';
+		// ctx.font = 14*imgScale+'px '+fontName;
+		// drawText(ctx, txt, 250*imgScale, 139*imgScale, imgScale);
+	// }
+	
+	//稀有度
+	drawCanvasImage(cardRarity,ctx,imgScale,(cardBg.width-cardRarity.width)*imgScale/2,(cardBg.height-36)*imgScale);
+		
+	if (cardData.Type!=4){
+		//费用
+		drawCanvasImage(costBg,ctx,imgScale);
+		var txt=cardData.Level;
+		ctx.fillStyle = "white";
 		ctx.textBaseline = "middle";
 		ctx.textAlign = 'center';
-		ctx.font = 18*imgScale+'px '+fontName;
-		ctx.fillText(txt,cardBg.width*imgScale/2, 14*imgScale);
-		//描述和背板
-		var txt=cardData.RulesText;
-		if (txt!=null && txt!=""){
-			txt = cardDesFunc(txt);
-			ctx.fillStyle = "white";
-			ctx.textBaseline = "middle";
-			ctx.textAlign = 'center';
-			ctx.font = 14*imgScale+'px '+fontName;
-			drawText(ctx, txt, cardBg, 250*imgScale, 139*imgScale, imgScale);
-		}
+		ctx.font = 24*imgScale+'px '+fontName;
+		ctx.fillText(txt,10*imgScale, 15*imgScale);			
+	}
+	//生物额外的攻血
+	if (cardData.Type==1){
+		var txt=cardData.Power;
+		if (txt==null) txt=0;
+		ctx.fillStyle = "black";
+		ctx.textBaseline = "middle";
+		ctx.textAlign = 'center';
+		ctx.font = 26*imgScale+'px '+fontName;
+		ctx.fillText(txt,40*imgScale,cardBg.height*imgScale-21*imgScale);
 		
-		//稀有度
-		drawCanvasImage(cardRarity,ctx,imgScale,(cardBg.width-cardRarity.width)*imgScale/2,(cardBg.height-36)*imgScale);
-			
-		if (cardData.Type!=4){
-			//费用
-			drawCanvasImage(costBg,ctx,imgScale);
-			var txt=cardData.Level;
-			ctx.fillStyle = "white";
-			ctx.textBaseline = "middle";
-			ctx.textAlign = 'center';
-			ctx.font = 24*imgScale+'px '+fontName;
-			ctx.fillText(txt,10*imgScale, 15*imgScale);			
-		}
-		//生物额外的攻血
-		if (cardData.Type==1){
-			var txt=cardData.Power;
-			if (txt==null) txt=0;
-			ctx.fillStyle = "black";
-			ctx.textBaseline = "middle";
-			ctx.textAlign = 'center';
-			ctx.font = 26*imgScale+'px '+fontName;
-			ctx.fillText(txt,40*imgScale,cardBg.height*imgScale-21*imgScale);
-			
-			var txt=cardData.Life;
-			if (txt==null) txt=0;
-			ctx.fillStyle = "black";
-			ctx.textBaseline = "middle";
-			ctx.textAlign = 'center';
-			ctx.font = 26*imgScale+'px '+fontName;
-			ctx.fillText(txt,cardBg.width*imgScale-25*imgScale,cardBg.height*imgScale-21*imgScale);
-		}
-		
-	},waitTime)
+		var txt=cardData.Life;
+		if (txt==null) txt=0;
+		ctx.fillStyle = "black";
+		ctx.textBaseline = "middle";
+		ctx.textAlign = 'center';
+		ctx.font = 26*imgScale+'px '+fontName;
+		ctx.fillText(txt,cardBg.width*imgScale-25*imgScale,cardBg.height*imgScale-21*imgScale);
+	}
 
 	return canvas;
+}
+
+//获取插画ID
+function getCardIconIdByData(cardData){
+	var IconCardId=cardData.ID;
+	if (cardData.IconCardId>0){
+		IconCardId=cardData.IconCardId;
+	}
+	return IconCardId;
 }
 
 function drawCanvasImage(img,context,scale,offx,offy) {
@@ -254,12 +286,12 @@ function cardDesFunc(txt){
 }
 
 //文本换行
-function drawText(ctx, originTxt, cardBg, initHeight, maxWidth, imgScale) {
+function drawText(ctx, originTxt, initHeight, maxWidth, imgScale) {
 	var strList=[];	
 	var txtList=originTxt.split("\\n");
 	var num = 0;
 	var titleHeight=0;
-	var leftWidth=cardBg.width*imgScale/2
+	var leftWidth=CardBgSize[0]*imgScale/2
 	
 	for (var j=0;j<txtList.length;++j){		
 		var lineWidth = 0;		
@@ -291,7 +323,7 @@ function drawText(ctx, originTxt, cardBg, initHeight, maxWidth, imgScale) {
 	titleHeight=20*strList.length+10;
 	var desBg = new Image();
 	desBg.src = './img/ui/desBg.png';
-	ctx.drawImage(desBg,0,(cardBg.height-titleHeight-46)*imgScale,cardBg.width*imgScale,titleHeight*imgScale);
+	ctx.drawImage(desBg,0,(CardBgSize[1]-titleHeight-46)*imgScale,CardBgSize[0]*imgScale,titleHeight*imgScale);
 	
 	for (var i = 0; i < strList.length; ++i) {
 		var txt = strList[strList.length-i-1];
@@ -457,33 +489,30 @@ function getCardDataById(cardID){
 	return null;
 }
 
-function preloader() {
-	var imgList=[];
-	
-    if (document.images) {		
-		CardDataList.forEach( function( item ) {
-			 imgList[imgList.length] = new Image();
-			 imgList[imgList.length-1].src = './img/cards/'+item.ID+'.png';
-			}
-		)
-		
-		imgList[imgList.length] = new Image();
-		imgList[imgList.length-1].src = './img/ui/desBg.png';
-		imgList[imgList.length] = new Image();
-		imgList[imgList.length-1].src = './img/ui/cardBgCreature2.png';
-    }
-	// alert(imgList.length);
-}  
-function addLoadEvent(func) {  
-    var oldonload = window.onload;  
-    if (typeof window.onload != 'function') {
-        window.onload = func;  
-    } else {  
-        window.onload = function() {  
-            if (oldonload) {  
-                oldonload();  
-            }  
-            func();  
-        }  
-    }
-}  
+// 提前加载UI资源
+function preLoadUI(){
+	loadUiByName('desBg');
+	loadUiByName('Lv1');
+	loadUiByName('Lv2');
+	loadUiByName('mana');
+	loadUiByName('cardBgCurse');
+	loadUiByName('cardRarityCurse');
+	loadUiByName('cardBgWeapon8');
+	loadUiByName('cardBgWeapon16');
+	for (var i=1;i<=4;++i){
+		var index = Math.pow(2,i);
+		loadUiByName('cardBgCreature'+index);
+		loadUiByName('cardBgMagic'+index);
+	}
+	for (var i=1;i<=3;++i){
+		loadUiByName('cardRarityCreature'+i);
+		loadUiByName('cardRarityMagic'+i);
+		loadUiByName('cardRarityWeapon'+i);
+	}
+}
+
+function loadUiByName(uiName){
+	var img = new Image();
+	img.src = 'img/ui/'+uiName+'.png';
+	imgList[imgList.length]=img;
+}
