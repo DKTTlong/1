@@ -71,9 +71,10 @@ function closeAbovePage(){
 
 //创建单张卡牌
 function CreatCardImgaeByData(cardData,canvas,imgScale){
+	if (canvas==null) return;
 	if (imgScale==null) imgScale=1;
 	var IconCardId=getCardIconIdByData(cardData);
-	const ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	var cardPic = new Image();
 	cardPic.src = './img/cards/'+IconCardId+'.png';	
 	cardImgList[cardImgList.length]=cardPic;
@@ -105,7 +106,7 @@ function CreatCardImgaeByData(cardData,canvas,imgScale){
 
 // 创建一张卡
 function CreateCardImg(box,cardData,space,canClick,imgScale){
-	const canvas = document.createElement("canvas"); //创建一个标签
+	var canvas = document.createElement("canvas"); //创建一个标签
 	if (imgScale==null) imgScale=1;
 	if (canClick==true){
 		canvas.onclick = function() {
@@ -121,7 +122,7 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 	canvas.height = CardBgSize[1]*imgScale;
 	canvas.style.margin=space+'px';
 	box.appendChild(canvas);
-	const ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	// 画图
 	//获取插画
 	var IconCardId=getCardIconIdByData(cardData);
@@ -170,23 +171,6 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 	//插画
 	var cardScale=0.92;
 	drawCanvasImage(cardPic,ctx,cardScale*imgScale,(cardBg.width-cardPic.width*cardScale)*imgScale/2,28*imgScale);
-	// 卡牌名
-	// var txt=cardData.Name;
-	// ctx.fillStyle = cardNameColor;
-	// ctx.textBaseline = "middle";
-	// ctx.textAlign = 'center';
-	// ctx.font = 18*imgScale+'px '+fontName;
-	// ctx.fillText(txt,cardBg.width*imgScale/2, 14*imgScale);
-	// 描述和背板
-	// var txt=cardData.RulesText;
-	// if (txt!=null && txt!=""){
-		// txt = cardDesFunc(txt);
-		// ctx.fillStyle = "white";
-		// ctx.textBaseline = "middle";
-		// ctx.textAlign = 'center';
-		// ctx.font = 14*imgScale+'px '+fontName;
-		// drawText(ctx, txt, 250*imgScale, 139*imgScale, imgScale);
-	// }
 	
 	//稀有度
 	drawCanvasImage(cardRarity,ctx,imgScale,(cardBg.width-cardRarity.width)*imgScale/2,(cardBg.height-36)*imgScale);
@@ -487,32 +471,4 @@ function getCardDataById(cardID){
 		}
 	}
 	return null;
-}
-
-// 提前加载UI资源
-function preLoadUI(){
-	loadUiByName('desBg');
-	loadUiByName('Lv1');
-	loadUiByName('Lv2');
-	loadUiByName('mana');
-	loadUiByName('cardBgCurse');
-	loadUiByName('cardRarityCurse');
-	loadUiByName('cardBgWeapon8');
-	loadUiByName('cardBgWeapon16');
-	for (var i=1;i<=4;++i){
-		var index = Math.pow(2,i);
-		loadUiByName('cardBgCreature'+index);
-		loadUiByName('cardBgMagic'+index);
-	}
-	for (var i=1;i<=3;++i){
-		loadUiByName('cardRarityCreature'+i);
-		loadUiByName('cardRarityMagic'+i);
-		loadUiByName('cardRarityWeapon'+i);
-	}
-}
-
-function loadUiByName(uiName){
-	var img = new Image();
-	img.src = 'img/ui/'+uiName+'.png';
-	imgList[imgList.length]=img;
 }

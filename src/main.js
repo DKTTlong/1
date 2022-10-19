@@ -158,9 +158,7 @@ function showOnePageCard(curPage,onePageCardCount){
 		cardPic.id = IconCardId;
 		var canvas = CreateCardImg(box,cardData,30,true);
 		canvas.className="cardObj";
-		// alert(IconCardId);
-		cardPic.onload=function(){
-			// alert("cardPic加载完成.."+this.id);			
+		cardPic.onload=function(){		
 			LodCardImgaeByID(this.id);
 		}
 	}

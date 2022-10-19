@@ -44,6 +44,33 @@
 	window.onload = function(){
 		Init();
 	};
+	// 提前加载UI资源
+	function preLoadUI(){
+		loadUiByName('desBg');
+		loadUiByName('Lv1');
+		loadUiByName('Lv2');
+		loadUiByName('mana');
+		loadUiByName('cardBgCurse');
+		loadUiByName('cardRarityCurse');
+		loadUiByName('cardBgWeapon8');
+		loadUiByName('cardBgWeapon16');
+		for (var i=1;i<=4;++i){
+			var index = Math.pow(2,i);
+			loadUiByName('cardBgCreature'+index);
+			loadUiByName('cardBgMagic'+index);
+		}
+		for (var i=1;i<=3;++i){
+			loadUiByName('cardRarityCreature'+i);
+			loadUiByName('cardRarityMagic'+i);
+			loadUiByName('cardRarityWeapon'+i);
+		}
+	}
+
+	function loadUiByName(uiName){
+		var img = new Image();
+		img.src = 'img/ui/'+uiName+'.png';
+		imgList[imgList.length]=img;
+	}
 </script>
 
 </html>
