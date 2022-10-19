@@ -1,4 +1,8 @@
 var fontName = 'Microsoft Yahei';
+var curCanvas;
+var curCanvasRota=[];
+var timer;
+
 
 // xml读取方法
 function loadXML(xmlFile){
@@ -78,8 +82,12 @@ function CreatCardImgaeByData(cardData,canvas,imgScale){
 	var cardPic = new Image();
 	cardPic.src = './img/cards/'+IconCardId+'.jpg';	
 	cardImgList[cardImgList.length]=cardPic;
-	var cardScale=0.92;
-	drawCanvasImage(cardPic,ctx,cardScale*imgScale,(CardBgSize[0]-cardPic.width*cardScale)*imgScale/2,28*imgScale);
+	var cardScale=1.05;
+	
+	ctx.rect(0,0,CardBgSize[0]*imgScale,263*imgScale);
+	// ctx.stroke();
+	ctx.clip();
+	drawCanvasImage(cardPic,ctx,cardScale*imgScale,(CardBgSize[0]-cardPic.width*cardScale)*imgScale/2,28*imgScale);	
 	
 	//描述和背板
 	var txt=cardData.RulesText;
@@ -95,17 +103,26 @@ function CreatCardImgaeByData(cardData,canvas,imgScale){
 
 // 创建一张卡
 function CreateCardImg(box,cardData,space,canClick,imgScale){
-	var canvas = document.createElement("canvas"); //创建一个标签
 	if (imgScale==null) imgScale=1;
+	var canvas = document.createElement("canvas"); //创建一个标签
+	
 	if (canClick==true){
 		canvas.onclick = function() {
+			resetCardCanvasRotate(canvas);
 			CreateMoreImfor(cardData);
 			document.getElementById("aboveBg").style.top=getPageOffY()+"px";
 			document.getElementById("aboveBg").style.display="block"; //显示				
 			enablePageScroll(false);
 		}
+		canvas.onmouseover = function() {
+		runCardCanvasRotate(canvas);
+		}
+		canvas.onmouseout = function() {
+			resetCardCanvasRotate(canvas);
+		}
 	}
 	
+	canvas.name = 1;//缩放系数
 	canvas.id = 'card_' + cardData.ID;
 	canvas.width = CardBgSize[0]*imgScale;
 	canvas.height = CardBgSize[1]*imgScale;
@@ -165,14 +182,8 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 	ctx.font = 18*imgScale+'px '+fontName;
 	ctx.fillText(txt,CardBgSize[0]*imgScale/2, 14*imgScale);
 	
-	//插画
-	// var cardPic = new Image();
-	// cardPic.src = './img/cards/'+IconCardId+'.jpg';	
-	// var cardScale=0.92;
-	// drawCanvasImage(cardPic,ctx,cardScale*imgScale,(cardBg.width-cardPic.width*cardScale)*imgScale/2,28*imgScale);
-	
 	//稀有度
-	drawCanvasImage(cardRarity,ctx,imgScale,(cardBg.width-cardRarity.width)*imgScale/2,(cardBg.height-36)*imgScale);
+	drawCanvasImage(cardRarity,ctx,imgScale,(CardBgSize[0]-cardRarity.width)*imgScale/2,(CardBgSize[1]-36)*imgScale);
 		
 	if (cardData.Type!=4){
 		//费用
@@ -181,8 +192,11 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 		ctx.fillStyle = "white";
 		ctx.textBaseline = "middle";
 		ctx.textAlign = 'center';
-		ctx.font = 24*imgScale+'px '+fontName;
-		ctx.fillText(txt,10*imgScale, 15*imgScale);			
+		ctx.font = 24*imgScale+'px '+'Microsoft Yahei';
+		var offx=11;
+		var offy=16;
+		ctx.fillText(txt,offx*imgScale, offy*imgScale);			
+		ctx.strokeText(txt,offx*imgScale, offy*imgScale);			
 	}
 	//生物额外的攻血
 	if (cardData.Type==1){
@@ -192,7 +206,7 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 		ctx.textBaseline = "middle";
 		ctx.textAlign = 'center';
 		ctx.font = 26*imgScale+'px '+fontName;
-		ctx.fillText(txt,40*imgScale,cardBg.height*imgScale-21*imgScale);
+		ctx.fillText(txt,40*imgScale,CardBgSize[1]*imgScale-21*imgScale);
 		
 		var txt=cardData.Life;
 		if (txt==null) txt=0;
@@ -200,7 +214,7 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 		ctx.textBaseline = "middle";
 		ctx.textAlign = 'center';
 		ctx.font = 26*imgScale+'px '+fontName;
-		ctx.fillText(txt,cardBg.width*imgScale-25*imgScale,cardBg.height*imgScale-21*imgScale);
+		ctx.fillText(txt,CardBgSize[0]*imgScale-25*imgScale,CardBgSize[1]*imgScale-21*imgScale);
 	}
 
 	return canvas;
@@ -470,4 +484,64 @@ function getCardDataById(cardID){
 		}
 	}
 	return null;
+}
+
+// 封装定时器
+function AllCardScaleRun(){
+	var scaleMax=1.05;
+	timer = setInterval(function() {
+		var cardCanvas = document.getElementsByClassName('cardObj');
+		for (var i=0;i<cardCanvas.length;++i) {
+			var canvas=cardCanvas[i];
+			var scale = canvas.name;
+			if (canvas==curCanvas){			
+				if (scale<scaleMax){
+					scale=scale+0.01;
+				}
+				canvas.style.transform = 'perspective(1000px) rotateX(' + curCanvasRota[0] + 'deg) rotateY(' + curCanvasRota[1] + 'deg)'+' scale('+scale+','+scale+')';
+			}
+			else{
+				if (scale>1){
+					scale=scale-0.01;
+				}
+				if (scale<1) scale=1;
+				canvas.style.transform = 'scale('+scale+','+scale+')';
+			}		
+			canvas.name=scale;
+		}
+	}, 25)
+}
+
+// 卡牌开始旋转
+function runCardCanvasRotate(canvas) {
+	canvas.onmousemove = function(e) {
+		setCardCanvasRotate(canvas,e);
+	}
+	curCanvas=canvas;
+}
+				
+// 卡牌旋转
+function setCardCanvasRotate(canvas,e){
+	var e = event || window.event;
+	if (e.offsetX || e.offsetY) {  //适用非Mozilla浏览器
+		x = e.offsetX;
+		y = e.offsetY;
+	} else if (e.layerX || e.layerY) {  //兼容Mozilla浏览器
+		x = e.layerX;
+		y = e.layerY;
+	}
+	curCanvasRota[0]=(y/canvas.height-0.5)*20;
+	curCanvasRota[1]=(x/canvas.width-0.5)*(-20);
+	var scale = canvas.name;
+	canvas.style.transform = 'perspective(1000px) rotateX(' + curCanvasRota[0] + 'deg) rotateY(' + curCanvasRota[1] + 'deg)'+' scale('+scale+','+scale+')';
+}
+
+// 指定卡牌旋转还原
+function resetCardCanvasRotate(canvas){
+	canvas.onmousemove = function(e) {	
+	}
+	// canvas.style.transform = 'perspective(1000px) rotateX(' + 0 + 'deg) rotateY(' + 0 + 'deg)';
+	// canvas.style.transform = 'scale(1,1)';
+	curCanvas=null;
+	curCanvasRota=[];
 }

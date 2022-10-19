@@ -30,6 +30,7 @@ function Init(){
 	InitCardBgSize();
 	AddOptionBtn();
 	LoadConfig();
+	AllCardScaleRun();
 }
 
 // 设置卡牌尺寸
@@ -138,7 +139,6 @@ function showCards(){
 	siftCards();
 	var pageNum = Math.ceil(ShowCardDataList.length/onePageCardCount);
 	pageShow(1,pageNum,onePageCardCount);
-	// alert(pageNum);
 }
 
 //显示一页卡牌
@@ -212,5 +212,4 @@ function LoadCardXml(xmlFile){
 		}
 		
 	}
-	// alert("显示卡牌：" + CardDataList.length);
 }
