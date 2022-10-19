@@ -81,17 +81,6 @@ function CreatCardImgaeByData(cardData,canvas,imgScale){
 	var cardScale=0.92;
 	drawCanvasImage(cardPic,ctx,cardScale*imgScale,(CardBgSize[0]-cardPic.width*cardScale)*imgScale/2,28*imgScale);
 	
-	var cardNameColor="black";
-	if (cardData.Type==4){
-		cardNameColor="#FF00FF";
-	}
-	//卡牌名
-	var txt=cardData.Name;
-	ctx.fillStyle = cardNameColor;
-	ctx.textBaseline = "middle";
-	ctx.textAlign = 'center';
-	ctx.font = 18*imgScale+'px '+fontName;
-	ctx.fillText(txt,CardBgSize[0]*imgScale/2, 14*imgScale);
 	//描述和背板
 	var txt=cardData.RulesText;
 	if (txt!=null && txt!=""){
@@ -130,6 +119,7 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 	var cardTypeStr="";
 	var cardBgFile="";
 	var cardRarityFile="";
+	var cardNameColor="black";
 	if (cardData.Type==1){
 		cardTypeStr="Creature";
 		cardBgFile=cardTypeStr+cardData.Color;
@@ -144,7 +134,7 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 		cardTypeStr="Curse";
 		cardBgFile=cardTypeStr;
 		cardRarityFile=cardTypeStr;
-		// cardNameColor="#FF00FF";
+		cardNameColor="#FF00FF";
 	}
 	else if (cardData.Type==8 || cardData.Type==16){
 		cardTypeStr="Weapon";
@@ -168,9 +158,18 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 	//绘制有先后
 	//背景
 	drawCanvasImage(cardBg,ctx,imgScale);
+
+	//卡牌名
+	var txt=cardData.Name;
+	ctx.fillStyle = cardNameColor;
+	ctx.textBaseline = "middle";
+	ctx.textAlign = 'center';
+	ctx.font = 18*imgScale+'px '+fontName;
+	ctx.fillText(txt,CardBgSize[0]*imgScale/2, 14*imgScale);
+	
 	//插画
-	var cardScale=0.92;
-	drawCanvasImage(cardPic,ctx,cardScale*imgScale,(cardBg.width-cardPic.width*cardScale)*imgScale/2,28*imgScale);
+	// var cardScale=0.92;
+	// drawCanvasImage(cardPic,ctx,cardScale*imgScale,(cardBg.width-cardPic.width*cardScale)*imgScale/2,28*imgScale);
 	
 	//稀有度
 	drawCanvasImage(cardRarity,ctx,imgScale,(cardBg.width-cardRarity.width)*imgScale/2,(cardBg.height-36)*imgScale);
