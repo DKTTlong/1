@@ -52,6 +52,7 @@ function CreateMoreImfor(cardData){
 		card.style.position='absolute';
 		card.className='tempCard';
 		var imgScale=1.3;
+		if (IsMobile==true) imgScale=imgScale*MobileScale;
 		var canvas = CreateCardImg(card,cardDataVec[i],disX*imgScale,false,imgScale);
 		CreatCardImgaeByData(cardDataVec[i],canvas,imgScale);
 		
@@ -468,11 +469,11 @@ function getPageOffY(){
 function enablePageScroll(isable){
 	if (isable == true){
 		document.body.style.overflow='';//出现滚动条
-        // document.removeEventListener("touchmove",mo,{passive:false});
+		if (IsMobile==true) document.removeEventListener("touchmove",mo,{passive:false});
 	}
 	else{
 		document.body.style.overflow='hidden';//禁止页面滑动
-        // document.addEventListener("touchmove",mo,{passive:false});
+        if (IsMobile==true) document.addEventListener("touchmove",mo,{passive:false});
 	}
 }
 
