@@ -8,7 +8,7 @@ var CardBgSize=[]; //卡牌尺寸
 
 
 // 卡牌数据结构
-function CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,CardLvl,UpLvlCardId,NpcAIFlag,IconCardId){
+function CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,CardLvl,UpLvlCardId,NpcAIFlag,IconCardId,FromDesc){
 	this.ID=ID;
 	this.SetNo=SetNo;
 	this.Name=Name;
@@ -23,6 +23,7 @@ function CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,Car
 	this.UpLvlCardId=UpLvlCardId;
 	this.NpcAIFlag=NpcAIFlag;
 	this.IconCardId=IconCardId;
+	this.FromDesc=FromDesc;
 }
 
 // 初始化
@@ -190,6 +191,7 @@ function LoadCardXml(xmlFile){
 		var UpLvlCardId=cards[i].getAttribute("UpLvlCardId");
 		var NpcAIFlag=cards[i].getAttribute("NpcAIFlag");
 		var IconCardId=cards[i].getAttribute("IconCardId");
+		var FromDesc=cards[i].getAttribute("FromDesc");
 		
 		if (ID==null){
 			continue;
@@ -201,12 +203,12 @@ function LoadCardXml(xmlFile){
 			NpcAIFlag=0;
 		}
 
-		if (Type!=32 && (NpcAIFlag&8)!=8){
+		if (Type!=32 && (NpcAIFlag&8)==0){
 			if (CardLvl<=1){
-				CardDataList[CardDataList.length] = new CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,CardLvl,UpLvlCardId,NpcAIFlag,IconCardId);
+				CardDataList[CardDataList.length] = new CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,CardLvl,UpLvlCardId,NpcAIFlag,IconCardId,FromDesc);
 			}
 			else if(CardLvl==2){
-				UpgradeCardDataList[UpgradeCardDataList.length] = new CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,CardLvl,UpLvlCardId,NpcAIFlag,IconCardId);
+				UpgradeCardDataList[UpgradeCardDataList.length] = new CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,CardLvl,UpLvlCardId,NpcAIFlag,IconCardId,FromDesc);
 			}
 		}
 		

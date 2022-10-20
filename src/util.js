@@ -52,8 +52,9 @@ function CreateMoreImfor(cardData){
 		card.style.position='absolute';
 		card.className='tempCard';
 		var imgScale=1.3;
-		var canvas = CreateCardImg(card,cardDataVec[i],disX,false,imgScale);
+		var canvas = CreateCardImg(card,cardDataVec[i],disX*imgScale,false,imgScale);
 		CreatCardImgaeByData(cardDataVec[i],canvas,imgScale);
+		
 		var offX=(canvas.width*imgScale*cardDataVec.length+disX*(cardDataVec.length-1))/2;//间距
 		card.style.top = (getPageOffY()+document.body.clientHeight/2-canvas.height*imgScale/2) + 'px';
 		card.style.left = (document.body.clientWidth/2+i*canvas.width*imgScale-offX) + 'px';
@@ -61,6 +62,11 @@ function CreateMoreImfor(cardData){
 			closeAbovePage();
 		}
 	}
+	
+	//卡牌来源
+	var txt=cardData.FromDesc;
+	if (txt==null) txt="";
+	document.getElementById("cardFrom").innerText=txt;
 }
 
 // 关闭蒙版
