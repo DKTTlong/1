@@ -83,7 +83,7 @@ function closeAbovePage(){
 //创建单张卡牌
 function CreatCardImgaeByData(cardData,canvas,imgScale){
 	if (canvas==null) return;
-	if (imgScale==null) imgScale=1;
+	if (imgScale==null) imgScale=1*MobileScale;;
 	var IconCardId=getCardIconIdByData(cardData);
 	var ctx = canvas.getContext('2d');
 	var cardPic = new Image();

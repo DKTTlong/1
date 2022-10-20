@@ -6,7 +6,7 @@ var cardImgList=[];
 var onePageCardCount = 21;//每页显示卡牌数量
 var CardBgSize=[]; //卡牌尺寸
 var IsMobile=false; //移动端
-var MobileScale=0.5; //移动端
+var MobileScale=0.7; //移动端
 
 
 // 卡牌数据结构
