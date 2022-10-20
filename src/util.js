@@ -53,7 +53,7 @@ function CreateMoreImfor(cardData){
 		card.className='tempCard';
 		var imgScale=1.3;
 		if (IsMobile==true) {
-			imgScale=imgScale*MobileScale;
+			imgScale=1.2*MobileScale;
 		}
 		var canvas = CreateCardImg(card,cardDataVec[i],disX*imgScale,false,imgScale);
 		CreatCardImgaeByData(cardDataVec[i],canvas,imgScale);
