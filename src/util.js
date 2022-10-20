@@ -212,8 +212,8 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 		var offx=11;
 		var offy=15;
 		if (IsMobile==true) offy=offy-3;
-		ctx.fillText(txt,offx*imgScale, offy*imgScale);			
-		ctx.strokeText(txt,offx*imgScale, offy*imgScale);			
+		ctx.fillText(txt,offx*imgScale, offy*imgScale);
+		if (IsMobile==false) ctx.strokeText(txt,offx*imgScale, offy*imgScale);				
 	}
 	//生物额外的攻血
 	if (cardData.Type==1){
