@@ -255,6 +255,8 @@ function drawCanvasImage(img,context,scale,offx,offy) {
 //卡牌描述特殊处理
 function cardDesFunc(txt){
 	var newText="";
+	txt=txt.replace(/<LC>/g,"");
+	txt=txt.replace(/<-LC>/g,"");
 	if (txt.includes("},{")){
 		var stringVec=txt.split("},{");
 		for (var i=0;i<stringVec.length;++i){
@@ -267,8 +269,8 @@ function cardDesFunc(txt){
 			}
 			//第1种
 			if (stringVec[i].includes("{'T':'")){
-				stringVec[i]=stringVec[i].replace("{'T':'","");
-				stringVec[i]=stringVec[i].replace("'}","");
+				stringVec[i]=stringVec[i].replace(/{'T':'/g,"");
+				stringVec[i]=stringVec[i].replace(/'}/g,"");
 			}
 			//第2种
 			else if (stringVec[i].includes("Shuoming_")){
@@ -285,8 +287,6 @@ function cardDesFunc(txt){
 	else{
 		newText=txt;
 	}
-	newText=newText.replace("<LC>","");
-	newText=newText.replace("<-LC>","");
 	
 	return newText;
 }
