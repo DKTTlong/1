@@ -84,10 +84,10 @@ function CreatCardImgaeByData(cardData,canvas,imgScale){
 	cardImgList[cardImgList.length]=cardPic;
 	var cardScale=1.05;
 	
-	ctx.rect(0,0,CardBgSize[0]*imgScale,263*imgScale);
+	ctx.rect(0,29,CardBgSize[0]*imgScale,235*imgScale);
 	// ctx.stroke();
 	ctx.clip();
-	drawCanvasImage(cardPic,ctx,cardScale*imgScale,(CardBgSize[0]-cardPic.width*cardScale)*imgScale/2,28*imgScale);	
+	drawCanvasImage(cardPic,ctx,cardScale*imgScale,(CardBgSize[0]-cardPic.width*cardScale)*imgScale/2,0);	
 	
 	//描述和背板
 	var txt=cardData.RulesText;
