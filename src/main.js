@@ -30,6 +30,7 @@ function CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,Car
 
 // 初始化
 function Init(){
+	if (IsMobile==true) onePageCardCount=12;
 	InitCardBgSize();
 	AddOptionBtn();
 	LoadConfig();
