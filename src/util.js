@@ -25,7 +25,7 @@ function RemoveAllCardImg(){
 	// 获取 box 标签下的所有子节点
     var pObjs = box.childNodes;
     for (var i = pObjs.length - 1; i >= 0; i--) { // 一定要倒序，正序是删不干净的，可自行尝试
-      box.removeChild(pObjs[i]);
+      pObjs[i].remove();
     }
 	window.scrollTo(0, 0); 
 	cardImgList=[];
@@ -470,11 +470,20 @@ function getPageOffY(){
 function enablePageScroll(isable){
 	if (isable == true){
 		document.body.style.overflow='';//出现滚动条
-		if (IsMobile==true) document.removeEventListener("touchmove",mo,{passive:false});
+		if (IsMobile==true){
+			window.ontouchmove=function(e){};
+		}
 	}
 	else{
 		document.body.style.overflow='hidden';//禁止页面滑动
-        if (IsMobile==true) document.addEventListener("touchmove",mo,{passive:false});
+        if (IsMobile==true){
+			window.ontouchmove=function(e){
+				e.preventDefault && e.preventDefault();
+				e.returnValue=false;
+				e.stopPropagation && e.stopPropagation();
+				return false;
+			};
+		}
 	}
 }
 

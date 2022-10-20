@@ -6,7 +6,7 @@ var cardImgList=[];
 var onePageCardCount = 21;//每页显示卡牌数量
 var CardBgSize=[]; //卡牌尺寸
 var IsMobile=false; //移动端
-var MobileScale=0.7; //移动端
+var MobileScale=0.8; //移动端
 
 
 // 卡牌数据结构
@@ -73,7 +73,16 @@ function AddOptionBtn(){
 	AddOneOptionBtn(txtList,valueList,'option_cost');
 	
 	//卡牌关键字
-	var inputText = document.getElementById('inputText'); 
+	var inputText = document.getElementById('inputText');
+	if (IsMobile==true){
+		inputText.remove(); 
+		inputText = document.createElement("input"); //创建一个标签
+		document.getElementById("options").appendChild(inputText);
+		inputText.id = 'inputText';
+		inputText.autocomplete = 'off';
+		inputText.placeholder = '输入卡牌关键字...';
+	}
+	
 	inputText.onchange = function() {
 		showCards();
 	}
@@ -82,6 +91,8 @@ function AddOptionBtn(){
 	document.getElementById('aboveBg').onclick = function(){
 		closeAbovePage();
 	}
+	
+	
 }
 
 // 创建一个下拉框
