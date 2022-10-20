@@ -477,13 +477,16 @@ function getPageOffY(){
 //禁止和允许滑动
 function enablePageScroll(isable){
 	if (isable == true){
-		document.body.style.overflow='';//出现滚动条
+		$(document).unbind("scroll.unable");
 		if (IsMobile==true){
 			window.ontouchmove=function(e){};
 		}
 	}
 	else{
-		document.body.style.overflow='hidden';//禁止页面滑动
+		var top = $(document).scrollTop();
+		$(document).on('scroll.unable',function (e) {
+			$(document).scrollTop(top);
+		})
         if (IsMobile==true){
 			window.ontouchmove=function(e){
 				e.preventDefault && e.preventDefault();
