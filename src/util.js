@@ -122,17 +122,19 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 	
 	if (canClick==true){
 		canvas.onclick = function() {
-			resetCardCanvasRotate(canvas);
+			if (IsMobile==false) resetCardCanvasRotate(canvas);
 			CreateMoreImfor(cardData);
 			document.getElementById("aboveBg").style.top=getPageOffY()+"px";
 			document.getElementById("aboveBg").style.display="block"; //显示				
 			enablePageScroll(false);
 		}
-		canvas.onmouseover = function() {
-		runCardCanvasRotate(canvas);
-		}
-		canvas.onmouseout = function() {
-			resetCardCanvasRotate(canvas);
+		if (IsMobile==false) {
+			canvas.onmouseover = function() {
+			runCardCanvasRotate(canvas);
+			}
+			canvas.onmouseout = function() {
+				resetCardCanvasRotate(canvas);
+			}
 		}
 	}
 	
