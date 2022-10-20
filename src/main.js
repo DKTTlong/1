@@ -101,7 +101,7 @@ function LoadConfig(){
 	}
 	
 	for (var i=1;i<=3;++i) {	
-		var xmlFile = url+"cards/"+i+".xml";
+		var xmlFile = url+"cards/Card"+i+"_Txt.xml";
 		LoadCardXml(xmlFile);
 	}
 	
@@ -175,7 +175,7 @@ function LodCardImgaeByID(cardID){
 function LoadCardXml(xmlFile){
 	var xmldoc=loadXML(xmlFile);
 	//获得根节点
-	var cards=xmlDoc.getElementsByTagName("Card");
+	var cards=xmlDoc.getElementsByTagName("CardTxt");
 	for(var i=0;i<cards.length;i++) {
 		var ID=cards[i].getAttribute("ID");
 		var SetNo=cards[i].getAttribute("SetNo");
@@ -211,6 +211,14 @@ function LoadCardXml(xmlFile){
 				UpgradeCardDataList[UpgradeCardDataList.length] = new CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,CardLvl,UpLvlCardId,NpcAIFlag,IconCardId,FromDesc);
 			}
 		}
-		
+		CardDataList.sort(function(a,b){
+			var colorA = a.Color;
+			var colorB = b.Color;
+			if (colorA==0) colorA=100;
+			if (colorB==0) colorB=100;
+			var sortA = -colorA*1000 + a.Level;
+			var sortB = -colorB*1000 + b.Level;
+			return sortB - sortA;
+		})
 	}
 }
