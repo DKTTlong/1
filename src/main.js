@@ -180,8 +180,12 @@ function showOnePageCard(curPage,onePageCardCount){
 		cardPic.src = './img/cards/'+IconCardId+'.jpg';
 		cardPic.id = IconCardId;
 		var imgScale=1;
-		if (IsMobile==true) imgScale=imgScale*MobileScale;
-		var canvas = CreateCardImg(box,cardData,30,true,imgScale);
+		var space=30;
+		if (IsMobile==true) {
+			imgScale=imgScale*MobileScale;
+			space=15;
+		}
+		var canvas = CreateCardImg(box,cardData,space,true,imgScale);
 		cardPic.onload=function(){		
 			LodCardImgaeByID(this.id);
 		}
@@ -192,7 +196,9 @@ function showOnePageCard(curPage,onePageCardCount){
 function LodCardImgaeByID(cardID){
 	var canvas = document.getElementById('card_'+cardID);
 	var cardData=getCardDataById(cardID);
-	CreatCardImgaeByData(cardData,canvas);
+	var imgScale=1;
+	if (IsMobile==true) imgScale=imgScale*MobileScale;
+	CreatCardImgaeByData(cardData,canvas,imgScale);
 }
 
 //读取单个文件配置

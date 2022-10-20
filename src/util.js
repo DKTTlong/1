@@ -52,12 +52,14 @@ function CreateMoreImfor(cardData){
 		card.style.position='absolute';
 		card.className='tempCard';
 		var imgScale=1.3;
-		if (IsMobile==true) imgScale=imgScale*MobileScale;
+		if (IsMobile==true) {
+			imgScale=imgScale*MobileScale;
+		}
 		var canvas = CreateCardImg(card,cardDataVec[i],disX*imgScale,false,imgScale);
 		CreatCardImgaeByData(cardDataVec[i],canvas,imgScale);
 		
 		var offX=(canvas.width*imgScale*cardDataVec.length+disX*(cardDataVec.length-1))/2;//间距
-		card.style.top = (getPageOffY()+document.body.clientHeight/2-canvas.height*imgScale/2) + 'px';
+		card.style.top = (getPageOffY()+document.body.clientHeight/2-canvas.height/2-disX-20) + 'px';
 		card.style.left = (document.body.clientWidth/2+i*canvas.width*imgScale-offX) + 'px';
 		card.onclick = function() {
 			closeAbovePage();
@@ -67,7 +69,13 @@ function CreateMoreImfor(cardData){
 	//卡牌来源
 	var txt=cardData.FromDesc;
 	if (txt==null) txt="";
-	document.getElementById("cardFrom").innerText=txt;
+	var cardFrom = document.getElementById("cardFrom");
+	cardFrom.innerText=txt;
+	var offY=720;
+	if (IsMobile==true) {
+			offY=650;
+		}
+	cardFrom.style.paddingTop = offY+'px';
 }
 
 // 关闭蒙版
@@ -83,7 +91,6 @@ function closeAbovePage(){
 //创建单张卡牌
 function CreatCardImgaeByData(cardData,canvas,imgScale){
 	if (canvas==null) return;
-	if (imgScale==null) imgScale=1*MobileScale;;
 	var IconCardId=getCardIconIdByData(cardData);
 	var ctx = canvas.getContext('2d');
 	var cardPic = new Image();
