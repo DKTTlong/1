@@ -30,7 +30,6 @@ function CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,Car
 
 // 初始化
 function Init(){
-	CheckDevice()
 	InitCardBgSize();
 	AddOptionBtn();
 	LoadConfig();
@@ -73,16 +72,7 @@ function AddOptionBtn(){
 	AddOneOptionBtn(txtList,valueList,'option_cost');
 	
 	//卡牌关键字
-	var inputText = document.getElementById('inputText');
-	if (IsMobile==true){
-		inputText.remove(); 
-		inputText = document.createElement("input"); //创建一个标签
-		document.getElementById("options").appendChild(inputText);
-		inputText.id = 'inputText';
-		inputText.autocomplete = 'off';
-		inputText.placeholder = '输入卡牌关键字...';
-	}
-	
+	var inputText = document.getElementById('inputText');	
 	inputText.onchange = function() {
 		showCards();
 	}
@@ -91,8 +81,18 @@ function AddOptionBtn(){
 	document.getElementById('aboveBg').onclick = function(){
 		closeAbovePage();
 	}
-	
-	
+}
+
+function ResetInputText(){
+	if (IsMobile==false) return;
+	//卡牌关键字
+	var inputText = document.getElementById('inputText');
+	inputText.remove(); 
+	inputText = document.createElement("input"); //创建一个标签
+	document.getElementById("options").appendChild(inputText);
+	inputText.id = 'inputText';
+	inputText.autocomplete = 'off';
+	inputText.placeholder = '输入卡牌关键字...';
 }
 
 // 创建一个下拉框
