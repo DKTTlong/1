@@ -84,7 +84,7 @@ function CreatCardImgaeByData(cardData,canvas,imgScale){
 	cardImgList[cardImgList.length]=cardPic;
 	var cardScale=1.05;
 	
-	ctx.rect(0,29,CardBgSize[0]*imgScale,235*imgScale);
+	ctx.rect(0,29*imgScale,CardBgSize[0]*imgScale,235*imgScale);
 	// ctx.stroke();
 	ctx.clip();
 	drawCanvasImage(cardPic,ctx,cardScale*imgScale,(CardBgSize[0]-cardPic.width*cardScale)*imgScale/2,0);	
@@ -124,6 +124,7 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 	
 	canvas.name = 1;//缩放系数
 	canvas.id = 'card_' + cardData.ID;
+	canvas.className="cardObj";
 	canvas.width = CardBgSize[0]*imgScale;
 	canvas.height = CardBgSize[1]*imgScale;
 	canvas.style.margin=space+'px';
@@ -540,8 +541,6 @@ function setCardCanvasRotate(canvas,e){
 function resetCardCanvasRotate(canvas){
 	canvas.onmousemove = function(e) {	
 	}
-	// canvas.style.transform = 'perspective(1000px) rotateX(' + 0 + 'deg) rotateY(' + 0 + 'deg)';
-	// canvas.style.transform = 'scale(1,1)';
 	curCanvas=null;
 	curCanvasRota=[];
 }

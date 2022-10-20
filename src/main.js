@@ -157,7 +157,6 @@ function showOnePageCard(curPage,onePageCardCount){
 		cardPic.src = './img/cards/'+IconCardId+'.jpg';
 		cardPic.id = IconCardId;
 		var canvas = CreateCardImg(box,cardData,30,true);
-		canvas.className="cardObj";
 		cardPic.onload=function(){		
 			LodCardImgaeByID(this.id);
 		}
