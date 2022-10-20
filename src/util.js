@@ -72,7 +72,7 @@ function CreateMoreImfor(cardData){
 	cardFrom.innerText=txt;
 	var offY=650;
 	if (IsMobile==true) {
-		offY=600;
+		offY=500;
 	}
 	cardFrom.style.paddingTop = offY+'px';
 }
