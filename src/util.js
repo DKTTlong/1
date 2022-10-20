@@ -35,7 +35,12 @@ function RemoveAllCardImg(){
 function CreateMoreImfor(cardData){
 	var cardDataVec=new Array(1);
 	cardDataVec[0]=cardData;
-	var disX=50;//间距
+	var disX=30;//间距
+	var imgScale=1.3;
+	if (IsMobile==true) {
+		imgScale=1.1*MobileScale;
+		disX=10;
+	}
 	
 	//判断是否有升级卡
 	if (cardData.UpLvlCardId>0){
@@ -44,26 +49,20 @@ function CreateMoreImfor(cardData){
 			cardDataVec[1]=upLvlCardData;
 		}
 	}
+	var tempCard = document.createElement("center"); //创建一个标签
+	var aboveBg = document.getElementById("aboveBg");		
+	tempCard.className='tempCard';
+	document.body.appendChild(tempCard);
 	
+	tempCard.style.position='absolute';
+	tempCard.style.top = (getPageOffY()+document.body.clientHeight/2-CardBgSize[1]/2*imgScale-100) + 'px';
+	tempCard.style.left = (document.body.clientWidth/2-cardDataVec.length*(disX*2+CardBgSize[0])/2*imgScale) + 'px';
+	tempCard.onclick = function() {
+		closeAbovePage();
+	}
 	for (var i=0;i<cardDataVec.length;++i){
-		var aboveBg = document.getElementById("aboveBg");	
-		var card = document.createElement("tempCard"); //创建一个标签
-		document.body.appendChild(card);
-		card.style.position='absolute';
-		card.className='tempCard';
-		var imgScale=1.3;
-		if (IsMobile==true) {
-			imgScale=1.1*MobileScale;
-		}
-		var canvas = CreateCardImg(card,cardDataVec[i],disX*imgScale,false,imgScale);
+		var canvas = CreateCardImg(tempCard,cardDataVec[i],disX*imgScale,false,imgScale);
 		CreatCardImgaeByData(cardDataVec[i],canvas,imgScale);
-		
-		var offX=(canvas.width*imgScale*cardDataVec.length+disX*(cardDataVec.length-1))/2;//间距
-		card.style.top = (getPageOffY()+document.body.clientHeight/2-canvas.height/2-disX-20) + 'px';
-		card.style.left = (document.body.clientWidth/2+i*canvas.width*imgScale-offX) + 'px';
-		card.onclick = function() {
-			closeAbovePage();
-		}
 	}
 	
 	//卡牌来源
@@ -71,10 +70,10 @@ function CreateMoreImfor(cardData){
 	if (txt==null) txt="";
 	var cardFrom = document.getElementById("cardFrom");
 	cardFrom.innerText=txt;
-	var offY=720;
+	var offY=650;
 	if (IsMobile==true) {
-			offY=600;
-		}
+		offY=600;
+	}
 	cardFrom.style.paddingTop = offY+'px';
 }
 
