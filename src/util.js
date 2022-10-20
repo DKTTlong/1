@@ -162,7 +162,7 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 	var cardBg = new Image();
 	cardBg.src = './img/ui/cardBg'+cardBgFile+'.png';
 	var cardRarity = new Image();
-	cardRarity.src = './img/ui/cardRarity'+cardRarityFile+'.png';
+	cardRarity.src = './img/ui/cardRarity'+cardRarityFile+'.jpg';
 	var costBg = new Image();
 	costBg.src = './img/ui/Lv1.png';
 	if  (cardData.CardLvl>=2){

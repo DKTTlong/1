@@ -49,7 +49,7 @@
 		loadUiByName('Lv2');
 		loadUiByName('mana');
 		loadUiByName('cardBgCurse');
-		loadUiByName('cardRarityCurse');
+		loadUiByName('cardRarityCurse','.jpg');
 		loadUiByName('cardBgWeapon8');
 		loadUiByName('cardBgWeapon16');
 		for (var i=1;i<=4;++i){
@@ -58,15 +58,16 @@
 			loadUiByName('cardBgMagic'+index);
 		}
 		for (var i=1;i<=3;++i){
-			loadUiByName('cardRarityCreature'+i);
-			loadUiByName('cardRarityMagic'+i);
-			loadUiByName('cardRarityWeapon'+i);
+			loadUiByName('cardRarityCreature'+i,'.jpg');
+			loadUiByName('cardRarityMagic'+i,'.jpg');
+			loadUiByName('cardRarityWeapon'+i,'.jpg');
 		}
 	}
 
-	function loadUiByName(uiName){
+	function loadUiByName(uiName,suffix){
+		if (suffix==null) suffix='.png';
 		var img = new Image();
-		img.src = 'img/ui/'+uiName+'.png';
+		img.src = 'img/ui/'+uiName+suffix;
 		imgList[imgList.length]=img;
 	}
 </script>
