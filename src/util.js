@@ -202,7 +202,8 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 		ctx.textAlign = 'center';
 		ctx.font = 24*imgScale+'px '+'Microsoft Yahei';
 		var offx=11;
-		var offy=16;
+		var offy=15;
+		if (IsMobile==true) offy=offy-3;
 		ctx.fillText(txt,offx*imgScale, offy*imgScale);			
 		ctx.strokeText(txt,offx*imgScale, offy*imgScale);			
 	}
