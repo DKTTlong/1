@@ -105,7 +105,7 @@ function CreatCardImgaeByData(cardData,canvas,imgScale){
 	//描述和背板
 	var txt=cardData.RulesText;
 	if (txt!=null && txt!=""){
-		txt = cardDesFunc(txt);
+		txt = cardDesFunc(txt,cardData.ID);
 		ctx.fillStyle = "white";
 		ctx.textBaseline = "middle";
 		ctx.textAlign = 'center';
@@ -266,7 +266,7 @@ function drawCanvasImage(img,context,scale,offx,offy) {
 }
 		
 //卡牌描述特殊处理
-function cardDesFunc(txt){
+function cardDesFunc(txt,cardID){
 	var newText="";
 	txt=txt.replace(/<LC>/g,"");
 	txt=txt.replace(/<-LC>/g,"");
@@ -300,7 +300,6 @@ function cardDesFunc(txt){
 	else{
 		newText=txt;
 	}
-	
 	return newText;
 }
 
