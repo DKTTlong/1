@@ -6,7 +6,7 @@ var cardImgList=[];
 var onePageCardCount = 21;//每页显示卡牌数量
 var CardBgSize=[]; //卡牌尺寸
 var IsMobile=false; //移动端
-var MobileScale=0.8; //移动端
+var MobileScale=0.6; //移动端
 
 
 // 卡牌数据结构
@@ -30,7 +30,7 @@ function CardData(ID,SetNo,Name,Color,Type,Level,Power,Life,Rarity,RulesText,Car
 
 // 初始化
 function Init(){
-	if (IsMobile==true) onePageCardCount=12;
+	// if (IsMobile==true) onePageCardCount=12;
 	InitCardBgSize();
 	AddOptionBtn();
 	LoadConfig();
@@ -184,7 +184,7 @@ function showOnePageCard(curPage,onePageCardCount){
 		var space=30;
 		if (IsMobile==true) {
 			imgScale=imgScale*MobileScale;
-			space=15;
+			space=5;
 		}
 		var canvas = CreateCardImg(box,cardData,space,true,imgScale);
 		cardPic.onload=function(){		

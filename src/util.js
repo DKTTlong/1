@@ -38,7 +38,7 @@ function CreateMoreImfor(cardData){
 	var disX=30;//间距
 	var imgScale=1.3;
 	if (IsMobile==true) {
-		imgScale=1.1*MobileScale;
+		imgScale=0.88;
 		disX=10;
 	}
 	
@@ -378,7 +378,8 @@ function pageShow(dbPage,totalPages,onePageCardCount,CardDataList)
 	$(function()   
 	{  
 		//page分割数量  
-		var pageFor = 10;  
+		var pageFor = 10;
+		if (IsMobile==true) pageFor=7;
 		var pageSlipt = parseInt(pageFor / 2);  
 		var pageHTML = new Array; 
 		if (dbPage > 1) //如果当前页大于1，则显示上一页  
