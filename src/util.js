@@ -192,7 +192,7 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 
 	//卡牌名
 	var offy=14;
-	if (IsMobile==true) offy=offy-2;
+	if (IsMobile==true) offy=offy-1;
 	var txt=cardData.Name;
 	ctx.fillStyle = cardNameColor;
 	ctx.textBaseline = "middle";
@@ -220,7 +220,7 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 	//生物额外的攻血
 	if (cardData.Type==1){
 		var offy=-21;
-		if (IsMobile==true) offy=offy-2;
+		if (IsMobile==true) offy=offy-3;
 	
 		var txt=cardData.Power;
 		if (txt==null) txt=0;
