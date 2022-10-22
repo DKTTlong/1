@@ -191,12 +191,14 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 	drawCanvasImage(cardBg,ctx,imgScale);
 
 	//卡牌名
+	var offy=14;
+	if (IsMobile==true) offy=offy-2;
 	var txt=cardData.Name;
 	ctx.fillStyle = cardNameColor;
 	ctx.textBaseline = "middle";
 	ctx.textAlign = 'center';
 	ctx.font = 18*imgScale+'px '+fontName;
-	ctx.fillText(txt,CardBgSize[0]*imgScale/2, 14*imgScale);
+	ctx.fillText(txt,CardBgSize[0]*imgScale/2, offy*imgScale);
 	
 	//稀有度
 	drawCanvasImage(cardRarity,ctx,imgScale,(CardBgSize[0]-cardRarity.width)*imgScale/2,(CardBgSize[1]-36)*imgScale);
@@ -217,13 +219,16 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 	}
 	//生物额外的攻血
 	if (cardData.Type==1){
+		var offy=-21;
+		if (IsMobile==true) offy=offy-2;
+	
 		var txt=cardData.Power;
 		if (txt==null) txt=0;
 		ctx.fillStyle = "black";
 		ctx.textBaseline = "middle";
 		ctx.textAlign = 'center';
 		ctx.font = 26*imgScale+'px '+fontName;
-		ctx.fillText(txt,40*imgScale,CardBgSize[1]*imgScale-21*imgScale);
+		ctx.fillText(txt,40*imgScale,CardBgSize[1]*imgScale+offy*imgScale);
 		
 		var txt=cardData.Life;
 		if (txt==null) txt=0;
@@ -231,7 +236,7 @@ function CreateCardImg(box,cardData,space,canClick,imgScale){
 		ctx.textBaseline = "middle";
 		ctx.textAlign = 'center';
 		ctx.font = 26*imgScale+'px '+fontName;
-		ctx.fillText(txt,CardBgSize[0]*imgScale-25*imgScale,CardBgSize[1]*imgScale-21*imgScale);
+		ctx.fillText(txt,CardBgSize[0]*imgScale-25*imgScale,CardBgSize[1]*imgScale+offy*imgScale);
 	}
 
 	return canvas;
