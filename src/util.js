@@ -355,12 +355,14 @@ function drawText(ctx, originTxt, initHeight, maxWidth, imgScale) {
 			var offx = 10;
 			var offy = 12;
 			var offx2 = 0;
+			var offx3 = 0.5;
 			if (strList.length==1){
 				offx2=8;
 			}
+			if (IsMobile==true) offx3=offx3-2;
 			ctx.drawImage(manaBg, leftWidth-ctx.measureText(txt).width/2-offx*imgScale-offx2*imgScale, initHeight-offy*imgScale, 17*imgScale, 20*imgScale);
 			ctx.font = 14*imgScale+'px '+fontName;
-			ctx.fillText(manaCost, leftWidth-ctx.measureText(txt).width/2-offx*imgScale+0.5*imgScale, initHeight-offy*imgScale+12.5*imgScale);
+			ctx.fillText(manaCost, leftWidth-ctx.measureText(txt).width/2-offx*imgScale+offx3*imgScale, initHeight-offy*imgScale+12.5*imgScale);
 		}
 		
 		ctx.font = 16*imgScale+'px '+fontName;
