@@ -123,10 +123,8 @@ function LoadConfig(){
 		url="https://dkttlong.github.io/1/";
 	}
 	
-	for (var i=1;i<=3;++i) {	
-		var xmlFile = url+"cards/Card"+i+"_Txt.xml";
-		LoadCardXml(xmlFile);
-	}
+	var xmlFile = url+"cards/CardTxt.xml";
+	LoadCardXml(xmlFile);
 	
 	showCards();
 }
