@@ -362,7 +362,7 @@ function drawText(ctx, originTxt, initHeight, maxWidth, imgScale) {
 			}
 			if (IsMobile==true) {
 				offx3=offx3-2;
-				offy3=offy3-1;
+				offy3=offy3-2;
 			}
 			ctx.drawImage(manaBg, leftWidth-ctx.measureText(txt).width/2-offx*imgScale-offx2*imgScale, initHeight-offy*imgScale, 17*imgScale, 20*imgScale);
 			ctx.font = 14*imgScale+'px '+fontName;
